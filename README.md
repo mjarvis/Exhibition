@@ -1,4 +1,4 @@
-# Exhibit
+# Exhibition
 
 A description of this package.
 
@@ -42,3 +42,14 @@ Generates swift code for the exhibit.
 ### Parameter modification
 
 Debug menu which allows modification of values passed into components
+
+
+# How?
+
+Problem: Views contained in swift package
+Exported file must be imported into package?
+
+
+Two parts:
+1. Script that runs and generates the exhibition
+2. Framework to import for the protocols + helpers.

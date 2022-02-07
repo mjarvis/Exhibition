@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Exhibit",
+    name: "Exhibition",
     platforms: [
         .iOS(.v15),
         .macOS(.v12),
@@ -12,17 +12,22 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Exhibit",
-            targets: ["Exhibit"]
+            name: "Exhibition",
+            targets: ["Exhibition"]
         ),
+        .executable(
+            name: "curator",
+            targets: ["Curator"]
+        )
     ],
     targets: [
         .target(
-            name: "Exhibit"
+            name: "Exhibition"
         ),
         .testTarget(
-            name: "ExhibitTests",
-            dependencies: ["Exhibit"]
+            name: "ExhibitionTests",
+            dependencies: ["Exhibition"]
         ),
+        .executableTarget(name: "Curator")
     ]
 )
