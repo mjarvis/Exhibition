@@ -11,7 +11,7 @@ struct CustomButton: View {
     }
 }
 
-struct CustomButton_Previews: Exhibit, PreviewProvider {
+struct CustomButton_Previews: ExhibitProvider, PreviewProvider {
     static var items: [Item] = [
         Item(
             variant: "primary",

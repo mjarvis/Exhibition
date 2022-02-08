@@ -1,12 +1,11 @@
 import SwiftUI
 
-public protocol Exhibit {
+public protocol ExhibitProvider {
     static var items: [Item] { get }
-    
     static var name: String { get }
 }
 
-public extension Exhibit {
+public extension ExhibitProvider {
     
     static var previews: some View {
         ForEach(items) { item in

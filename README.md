@@ -53,3 +53,22 @@ Exported file must be imported into package?
 Two parts:
 1. Script that runs and generates the exhibition
 2. Framework to import for the protocols + helpers.
+
+
+
+Use Sourcery for the script.
+
+Parameter modification via `binding() -> T` function in `Exhibit`
+
+```swift
+protocol ExhibitProvider {
+    static var exhibit: Exhibit
+}
+
+struct Exhibit: View {
+    
+    public init<T: View>(@ViewBuilder _ builder: (Bindings) -> T) {
+        
+    }
+}
+```
