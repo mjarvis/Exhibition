@@ -36,6 +36,10 @@ extension Exhibit {
             return binding as! T
         }
         
+        public func constant<T>(name: String) -> T where T: Defaultable {
+            constant(name: name, defaultValue: T.defaultValue)
+        }
+        
         public func binding<T>(name: String, defaultValue: T) -> Binding<T> {
             return Binding(
                 get: { [unowned self] in
@@ -45,6 +49,10 @@ extension Exhibit {
                     values[name] = newValue
                 }
             )
+        }
+        
+        public func binding<T>(name: String) -> Binding<T> where T: Defaultable {
+            binding(name: name, defaultValue: T.defaultValue)
         }
     }
 }

@@ -12,10 +12,11 @@ struct CustomButton: View {
 }
 
 struct CustomButton_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibits: [Exhibit] = [
-        Exhibit(name: "CustomButton") { parameters in
-            CustomButton(title: parameters.constant(name: "title", defaultValue: "Title"))
-        }
-    ]
+    static var exhibit = Exhibit(name: "CustomButton") { parameters in
+        CustomButton(
+            title: parameters.constant(name: "title", defaultValue: "Title")
+        )
+            .previewLayout(.sizeThatFits)
+    }
 }
 

@@ -11,13 +11,11 @@ struct CustomToggle: View {
 }
 
 struct CustomToggle_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibits: [Exhibit] = [
-        Exhibit(name: "CustomToggle") { parameters in
-            CustomToggle(
-                title: parameters.constant(name: "title", defaultValue: "Title"),
-                isOn: parameters.binding(name: "isOn", defaultValue: false)
-            )
-        }
-    ]
+    static var exhibit = Exhibit(name: "CustomToggle") { parameters in
+        CustomToggle(
+            title: parameters.constant(name: "title", defaultValue: "Title"),
+            isOn: parameters.binding(name: "isOn")
+        )
+            .previewLayout(.sizeThatFits)
+    }
 }
-
