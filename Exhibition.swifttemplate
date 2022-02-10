@@ -1,0 +1,16 @@
+// sourcery:file:Exhibition.generated.swift
+import Exhibition
+import SwiftUI
+
+public let exhibition = Exhibition(
+    exhibits: [<% for type in types.types where type.inheritedTypes.contains("ExhibitProvider") { %>
+        <%= type.name %>.exhibit,<% } %>
+    ]
+)
+
+struct Exhibition_Previews: PreviewProvider {
+    static var previews: some View {
+        exhibition
+    }
+}
+// sourcery:end

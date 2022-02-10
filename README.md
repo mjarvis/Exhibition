@@ -1,7 +1,31 @@
 # Exhibition
 
-A description of this package.
+Exhibition is a framework and generator for displaying a SwiftUI component library.
 
+Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github.com/airbnb/Showkase)
+
+# Installation
+
+### Swift Package Manager
+
+# Usage
+
+1. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery)
+2. Copy [Exhibition.swifttemplate](./Exhibition.swifttemplate) into your project
+3. Modify your SwiftUI previews to use `ExhibitProvider`
+    ```swift
+    struct Foo_Previews: ExhibitProvider, PreviewProvider {
+        static var exhibit = Exhibit(name: "Foo") { parameters in
+            Foo(
+                title: parameters.constant(name: "title", defaultValue: "Title"),
+                content: parameters.binding(name: "content")
+            )
+            .previewLayout(.sizeThatFits)
+        }
+    }
+    ```
+4. Run `Sourcery` to generate your Exhibition: `sourcery --sources Your/Source/Path --templates Exhibition.swifttemplate --output ./Sources/Generated`
+5. Show `exhibition` in a swift view 
 
 # TODO:
 
@@ -25,33 +49,14 @@ A description of this package.
     - [ ] Push
     - [ ] Present
     - [ ] Layout rules
-    - [ ] Variants
+    - [ ] Parameters
     
     - [ ] Code samples (copy-able snippets)
     - [ ] Code documentation (jazzy / swiftdocc)
 
-
-# Possiblities
-
-### Generative
-
-Auto-generator that creates the above based on some protocol on previews.
-Pulls documentation from swiftdocc.
-Generates swift code for the exhibit.
-
-### Parameter modification
-
-Debug menu which allows modification of values passed into components
-
-
-# How?
-
-Problem: Views contained in swift package
-Exported file must be imported into package?
-
-
-Two parts:
-1. Script that runs and generates the exhibition
-2. Framework to import for the protocols + helpers.
-
-Use Sourcery for the script.
+- [ ] Layout
+    - [ ] iPhone
+    - [ ] iPad
+    - [ ] macOS
+    - [ ] watchOS
+    - [ ] tvOS
