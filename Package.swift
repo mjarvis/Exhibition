@@ -14,10 +14,6 @@ let package = Package(
         .library(
             name: "Exhibition",
             targets: ["Exhibition"]
-        ),
-        .executable(
-            name: "curator",
-            targets: ["Curator"]
         )
     ],
     targets: [
@@ -27,7 +23,6 @@ let package = Package(
         .testTarget(
             name: "ExhibitionTests",
             dependencies: ["Exhibition"]
-        ),
-        .executableTarget(name: "Curator")
+        )
     ]
 )
