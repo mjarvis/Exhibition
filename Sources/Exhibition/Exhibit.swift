@@ -14,6 +14,7 @@ public struct Exhibit: View {
     
     public var body: some View {
         view(parameters)
+            .navigationTitle(name)
     }
 }
 
