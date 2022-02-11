@@ -29,6 +29,7 @@ public struct Exhibition: View {
                 NavigationLink(exhibit.id, destination: exhibit)
             }
             .navigationTitle("Exhibit")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
