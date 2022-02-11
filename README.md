@@ -10,10 +10,13 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
 
 # Usage
 
-1. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery)
-2. Copy [Exhibition.swifttemplate](./Exhibition.swifttemplate) into your project
-3. Modify your SwiftUI previews to use `ExhibitProvider`
+1. Add Exhibition to your project via Swift package manager using `https://github.com/mjarvis/Exhibition.git`
+2. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery)
+3. Copy [Exhibition.swifttemplate](./Exhibition.swifttemplate) into your project
+4. Modify your SwiftUI previews to use `ExhibitProvider`
     ```swift
+    import Exhibition
+    
     struct Foo_Previews: ExhibitProvider, PreviewProvider {
         static var exhibit = Exhibit(name: "Foo") { parameters in
             Foo(
@@ -24,22 +27,22 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
         }
     }
     ```
-4. Run `Sourcery` to generate your Exhibition: `sourcery --sources Your/Source/Path --templates Exhibition.swifttemplate --output ./Sources/Generated`
-5. Show `exhibition` in a swift view 
+5. Run `Sourcery` to generate your Exhibition: `sourcery --sources Your/Source/Path --templates Exhibition.swifttemplate --output ./Sources/Generated`
+6. Show `exhibition` in a swift view 
 
 # TODO:
 
-- [ ] Debug
-    - [ ] Dark mode
+- [ ] Debug (#1)
+    - [ ] Dark mode (#1)
     - [ ] RTL
     - [ ] Text sizing
     - [ ] Investigate other assistive switches
 
-- [ ] Search
+- [ ] Search (#2)
     - Search top level
     - Search nested
 
-- [ ] Sections
+- [ ] Sections (#5)
     - [ ] Collapsing
     - [ ] Rows
         - [ ] Icon
@@ -48,8 +51,8 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
 - [ ] Element
     - [ ] Push
     - [ ] Present
-    - [ ] Layout rules
-    - [ ] Parameters
+    - [ ] Layout rules (#4)
+    - [ ] Parameters (#3)
     
     - [ ] Code samples (copy-able snippets)
     - [ ] Code documentation (jazzy / swiftdocc)
@@ -60,3 +63,6 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
     - [ ] macOS
     - [ ] watchOS
     - [ ] tvOS
+
+
+Metadata?
