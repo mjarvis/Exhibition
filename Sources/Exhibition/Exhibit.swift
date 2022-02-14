@@ -6,7 +6,7 @@ public struct Exhibit: View {
     let view: (Parameters) -> AnyView
     
     @ObservedObject var parameters = Parameters()
-        
+    
     public init<T: View>(name: String, @ViewBuilder _ builder: @escaping (Parameters) -> T) {
         self.name = name
         view = { parameters in AnyView(builder(parameters)) }
@@ -26,7 +26,7 @@ extension Exhibit: Identifiable {
 
 extension Exhibit {
     public class Parameters: ObservableObject {
-        @Published private var values: [String: Any] = [:]
+        @Published var values: [String: Any] = [:]
         
         public func constant<T>(name: String, defaultValue: T) -> T {
             guard let binding = values[name] else {
@@ -57,4 +57,3 @@ extension Exhibit {
         }
     }
 }
-
