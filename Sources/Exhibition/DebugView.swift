@@ -8,7 +8,10 @@ struct DebugView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    init(parameters: Exhibit.Parameters, preferredColorScheme: Binding<ColorScheme>) {
+    init(
+        parameters: Exhibit.Parameters,
+        preferredColorScheme: Binding<ColorScheme>
+    ) {
         self.parameters = parameters
         _preferredColorScheme = preferredColorScheme
     }

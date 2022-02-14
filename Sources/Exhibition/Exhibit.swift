@@ -6,7 +6,7 @@ public struct Exhibit: View {
     let view: (Parameters) -> AnyView
     
     @ObservedObject var parameters = Parameters()
-            
+    
     public init<T: View>(name: String, @ViewBuilder _ builder: @escaping (Parameters) -> T) {
         self.name = name
         view = { parameters in AnyView(builder(parameters)) }
