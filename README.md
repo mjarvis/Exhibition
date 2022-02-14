@@ -32,8 +32,8 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
 
 # TODO:
 
-- [ ] Debug (#1)
-    - [ ] Dark mode (#1)
+- [x] Debug (#1)
+    - [x] Dark mode (#1)
     - [ ] RTL
     - [ ] Text sizing
     - [ ] Investigate other assistive switches
@@ -48,8 +48,8 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
         - [ ] Icon
         - [ ] Title
 
-- [ ] Element
-    - [ ] Push
+- [ ] Exhibit
+    - [x] Push
     - [ ] Present
     - [ ] Layout rules (#4)
     - [ ] Parameters (#3)
