@@ -5,6 +5,7 @@ public struct Exhibition: View {
     let exhibits: [Exhibit]
 
     @State var displayed: AnyHashable?
+    @State var searchText = ""
 
     func displayBinding(for id: AnyHashable) -> Binding<Bool> {
         Binding(
@@ -25,11 +26,22 @@ public struct Exhibition: View {
 
     public var body: some View {
         NavigationView {
-            List(exhibits) { exhibit in
+            List(searchResults) { exhibit in
                 NavigationLink(exhibit.id, destination: exhibit)
             }
+            .searchable(text: $searchText)
             .navigationTitle("Exhibit")
             .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+    
+    private var searchResults: [Exhibit] {
+        if searchText.isEmpty {
+            return exhibits
+        } else {
+            return exhibits.filter {
+                $0.id.localizedCaseInsensitiveContains(searchText)
+            }
         }
     }
 }
