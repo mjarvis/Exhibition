@@ -6,7 +6,8 @@ public struct Exhibition: View {
 
     @State var displayed: AnyHashable?
     @State var debugViewPresented: Bool = false
-    
+    @State var searchText = ""
+
     // MARK: Accessibility
     @State var preferredColorScheme: ColorScheme = .light
 
@@ -29,9 +30,10 @@ public struct Exhibition: View {
 
     public var body: some View {
         NavigationView {
-            List(exhibits) { exhibit in
+            List(searchResults) { exhibit in
                 NavigationLink(exhibit.id, destination: debuggable(exhibit))
             }
+            .searchable(text: $searchText)
             .navigationTitle("Exhibit")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -55,6 +57,16 @@ public struct Exhibition: View {
                     preferredColorScheme: $preferredColorScheme
                 )
             }
+    }
+    
+    private var searchResults: [Exhibit] {
+        if searchText.isEmpty {
+            return exhibits
+        } else {
+            return exhibits.filter {
+                $0.id.localizedCaseInsensitiveContains(searchText)
+            }
+        }
     }
 }
 
