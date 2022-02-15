@@ -57,6 +57,9 @@ public struct Exhibition: View {
                     preferredColorScheme: $preferredColorScheme
                 )
             }
+            .parameterView(StringParameterView.self)
+            .parameterView(BoolParameterView.self)
+            .parameterView(IntParameterView.self)
     }
     
     private var searchResults: [Exhibit] {

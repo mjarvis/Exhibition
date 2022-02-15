@@ -30,6 +30,28 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
 5. Run `Sourcery` to generate your Exhibition: `sourcery --sources Your/Source/Path --templates Exhibition.swifttemplate --output ./Sources/Generated`
 6. Show `exhibition` in a swift view 
 
+# Custom Parameter views
+
+Exhibition supports a number of types in the parameter list of the debug menu. 
+You can add your own arbitrary types along with a view to modify the parameter, or override the views for existing types.
+Conform to `ParameterView`, and pass the type in via the `.parameterView` modifier on `Exhibition`.
+
+```swift
+struct DoublingStringParameterView: ParameterView {
+    let key: String
+    @Binding var value: String
+    
+    var body: some View {
+        Button(key) {
+            value += value
+        }
+    }
+}
+
+exhibition
+    .parameterView(DoublingStringParameterView.self)
+```
+
 # TODO:
 
 - [x] Debug (#1)
@@ -52,7 +74,7 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
     - [x] Push
     - [ ] Present
     - [ ] Layout rules (#4)
-    - [ ] Parameters (#3)
+    - [x] Parameters (#3)
     
     - [ ] Code samples (copy-able snippets)
     - [ ] Code documentation (jazzy / swiftdocc)
