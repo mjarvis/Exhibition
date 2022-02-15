@@ -1,0 +1,82 @@
+name: Test
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  # Run Exhibition tests via xcodeproj
+  test:
+  
+    runs-on: macos-11
+    
+    strategy:
+      matrix:
+        include:
+        
+        # Latest iOS
+        - sdk: "iphonesimulator"
+          destination: "platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro Max"
+          
+        # Latest macOS (disabled due to lack of macOS UI support)
+        #- sdk: "macosx12.1"
+        #destination: "platform=macOS"
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+    
+      - name: Select Xcode
+        uses: devbotsxyz/xcode-select@v1.1.0
+        with:
+          version: "13.2.1"
+    
+      - name: Build and Test
+        run: |
+          xcodebuild test \
+            -project "Example.xcodeproj" \
+            -scheme "Exhibition" \
+            -sdk "${{ matrix.sdk }}" \
+            -destination "${{ matrix.destination }}"
+
+  # Build Example app to test sourcery generation & validate Package.swift
+  example:
+    
+    runs-on: macos-11
+    
+    strategy:
+      matrix:
+        include:
+          
+        # Latest iOS Build
+        - sdk: "iphonesimulator"
+          destination: "platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro Max"
+        
+        # Latest macOS (disabled due to lack of macOS UI support)
+        #- sdk: "macosx12.1"
+        #destination: "platform=macOS"
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+    
+      - name: Select Xcode
+        uses: devbotsxyz/xcode-select@v1.1.0
+        with:
+          version: "13.2.1"
+      
+      - name: Install sourcery
+        run: brew install sourcery
+      
+      - name: Build and Test
+        run: |
+          xcodebuild build \
+            -project "Example.xcodeproj" \
+            -scheme "Example" \
+            -sdk "${{ matrix.sdk }}" \
+            -destination "${{ matrix.destination }}"
