@@ -1,10 +1,9 @@
 name: Test
 
-on:
+on: 
   push:
     branches:
       - main
-      - mjarvis/github-actions
   pull_request:
     branches:
       - main
