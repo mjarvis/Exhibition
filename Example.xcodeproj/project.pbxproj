@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D42B337B27BD7E710071C18E /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B337A27BD7E710071C18E /* CustomDatePicker.swift */; };
 		D4B360F927B187EC001F5E20 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B360F827B187EC001F5E20 /* ExampleApp.swift */; };
 		D4B360FB27B187EC001F5E20 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B360FA27B187EC001F5E20 /* ContentView.swift */; };
 		D4B360FD27B187EE001F5E20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B360FC27B187EE001F5E20 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D42B337A27BD7E710071C18E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		D45C4ED327B1CE5000BA8515 /*  */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ""; sourceTree = "<group>"; };
 		D4B360F527B187EC001F5E20 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B360F827B187EC001F5E20 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				D4B360FA27B187EC001F5E20 /* ContentView.swift */,
 				D4B3610827B18839001F5E20 /* CustomButton.swift */,
 				D4C4975227B451950061244C /* CustomToggle.swift */,
+				D42B337A27BD7E710071C18E /* CustomDatePicker.swift */,
 				D4B360F827B187EC001F5E20 /* ExampleApp.swift */,
 				D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */,
 				D4B360FC27B187EE001F5E20 /* Assets.xcassets */,
@@ -194,6 +197,7 @@
 			files = (
 				D4E576A327B5988A00A97BB7 /* Exhibition.generated.swift in Sources */,
 				D4B360FB27B187EC001F5E20 /* ContentView.swift in Sources */,
+				D42B337B27BD7E710071C18E /* CustomDatePicker.swift in Sources */,
 				D4B360F927B187EC001F5E20 /* ExampleApp.swift in Sources */,
 				D4C4975327B451950061244C /* CustomToggle.swift in Sources */,
 				D4B3610927B18839001F5E20 /* CustomButton.swift in Sources */,

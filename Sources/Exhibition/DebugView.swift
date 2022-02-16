@@ -7,6 +7,7 @@ struct DebugView: View {
     @Binding var preferredColorScheme: ColorScheme
     
     @Environment(\.dismiss) var dismiss
+    @Environment(\.parameterViews) var parameterViews
     
     init(
         parameters: Exhibit.Parameters,
@@ -27,9 +28,10 @@ struct DebugView: View {
                 }
                 
                 Section("Parameters") {
-                    ForEach(Array(parameters.values.keys), id: \.self) { key in
-                        Text("\(key)")
-                    }
+                    ForEach(
+                        parameters.values.sorted(by: parameterSort), id: \.key,
+                        content: parameterView
+                    )
                 }
             }
             .navigationTitle("Debug")
@@ -43,5 +45,20 @@ struct DebugView: View {
             }
         }
         .preferredColorScheme(preferredColorScheme)
+    }
+    
+    private func parameterSort(left: (key: String, value: Any), right: (key: String, value: Any)) -> Bool {
+        return left.key < right.key
+    }
+    
+    private func parameterView(parameter: (key: String, value: Any)) -> AnyView? {
+        let view = parameterViews
+            .lazy
+            .compactMap { parameterView in
+                parameterView(parameter.key, parameter.value, parameters)
+            }
+            .first
+        
+        return view ?? AnyView(Text(parameter.key))
     }
 }
