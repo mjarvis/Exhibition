@@ -10,6 +10,7 @@ public struct Exhibition: View {
 
     // MARK: Accessibility
     @State var preferredColorScheme: ColorScheme = .light
+    @State var layoutDirection: LayoutDirection = .leftToRight
 
     func displayBinding(for id: AnyHashable) -> Binding<Bool> {
         Binding(
@@ -38,6 +39,7 @@ public struct Exhibition: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .preferredColorScheme(preferredColorScheme)
+        .environment(\.layoutDirection, layoutDirection)
     }
     
     private func debuggable(_ exhibit: Exhibit) -> some View {
@@ -54,7 +56,8 @@ public struct Exhibition: View {
             .sheet(isPresented: $debugViewPresented) {
                 DebugView(
                     parameters: exhibit.parameters,
-                    preferredColorScheme: $preferredColorScheme
+                    preferredColorScheme: $preferredColorScheme,
+                    layoutDirection: $layoutDirection
                 )
             }
             .parameterView(StringParameterView.self)

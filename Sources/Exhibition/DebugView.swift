@@ -5,17 +5,10 @@ struct DebugView: View {
     @ObservedObject var parameters: Exhibit.Parameters
     
     @Binding var preferredColorScheme: ColorScheme
+    @Binding var layoutDirection: LayoutDirection
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.parameterViews) var parameterViews
-    
-    init(
-        parameters: Exhibit.Parameters,
-        preferredColorScheme: Binding<ColorScheme>
-    ) {
-        self.parameters = parameters
-        _preferredColorScheme = preferredColorScheme
-    }
     
     var body: some View {
         NavigationView {
@@ -24,6 +17,11 @@ struct DebugView: View {
                     Picker("Color Scheme", selection: $preferredColorScheme) {
                         Text("Light").tag(ColorScheme.light)
                         Text("Dark").tag(ColorScheme.dark)
+                    }
+                    
+                    Picker("Layout Direction", selection: $layoutDirection) {
+                        Text("Left to Right").tag(LayoutDirection.leftToRight)
+                        Text("Right to Left").tag(LayoutDirection.rightToLeft)
                     }
                 }
                 
