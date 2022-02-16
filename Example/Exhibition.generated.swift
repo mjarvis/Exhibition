@@ -6,6 +6,7 @@ import SwiftUI
 public let exhibition = Exhibition(
     exhibits: [
         CustomButton_Previews.exhibit,
+        CustomDatePicker_Previews.exhibit,
         CustomToggle_Previews.exhibit,
     ]
 )

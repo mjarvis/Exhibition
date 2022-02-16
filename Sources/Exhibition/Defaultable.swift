@@ -31,3 +31,7 @@ extension Array: Defaultable {
 extension Dictionary: Defaultable {
     public static var defaultValue: Dictionary<Key, Value> { [:] }
 }
+
+extension Date: Defaultable {
+    public static var defaultValue: Date = .now
+}
