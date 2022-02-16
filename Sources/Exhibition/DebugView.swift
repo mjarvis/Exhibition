@@ -48,7 +48,7 @@ struct DebugView: View {
     }
     
     private func parameterSort(left: (key: String, value: Any), right: (key: String, value: Any)) -> Bool {
-        return left.key > right.key
+        return left.key < right.key
     }
     
     private func parameterView(parameter: (key: String, value: Any)) -> AnyView? {
