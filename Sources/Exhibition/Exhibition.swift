@@ -37,6 +37,22 @@ public struct Exhibition: View {
             .searchable(text: $searchText)
             .navigationTitle("Exhibit")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        debugViewPresented = true
+                    } label: {
+                        Image(systemName: "gear")
+                    }
+                }
+            }
+            .sheet(isPresented: $debugViewPresented) {
+                DebugView(
+                    parameters: .init(),
+                    preferredColorScheme: $preferredColorScheme,
+                    layoutDirection: $layoutDirection
+                )
+            }
         }
         .preferredColorScheme(preferredColorScheme)
         .environment(\.layoutDirection, layoutDirection)

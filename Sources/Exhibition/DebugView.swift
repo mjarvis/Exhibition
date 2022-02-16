@@ -25,11 +25,13 @@ struct DebugView: View {
                     }
                 }
                 
-                Section("Parameters") {
-                    ForEach(
-                        parameters.values.sorted(by: parameterSort), id: \.key,
-                        content: parameterView
-                    )
+                if parameters.values.isEmpty == false {
+                    Section("Parameters") {
+                        ForEach(
+                            parameters.values.sorted(by: parameterSort), id: \.key,
+                            content: parameterView
+                        )
+                    }
                 }
             }
             .navigationTitle("Debug")
