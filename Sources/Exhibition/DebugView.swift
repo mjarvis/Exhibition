@@ -33,6 +33,13 @@ struct DebugView: View {
                         )
                     }
                 }
+                
+                if context.log.isEmpty == false {
+                    Section("Log") {
+                        Text(context.log.joined(separator: "\n"))
+                            .textSelection(.enabled)
+                    }
+                }
             }
             .navigationTitle("Debug")
             .navigationBarTitleDisplayMode(.inline)

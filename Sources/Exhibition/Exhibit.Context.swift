@@ -3,6 +3,7 @@ import SwiftUI
 extension Exhibit {
     public class Context: ObservableObject {
         @Published var parameters: [String: Any] = [:]
+        @Published var log: [String] = []
         
         public func parameter<T>(name: String, defaultValue: T) -> T {
             guard let binding = parameters[name] else {
@@ -30,6 +31,10 @@ extension Exhibit {
         
         public func parameter<T>(name: String) -> Binding<T> where T: Defaultable {
             parameter(name: name, defaultValue: T.defaultValue)
+        }
+        
+        public func log(_ text: String) {
+            log.append(text)
         }
     }
 }
