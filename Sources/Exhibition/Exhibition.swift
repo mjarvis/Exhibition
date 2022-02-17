@@ -11,6 +11,10 @@ public struct Exhibition: View {
     // MARK: Accessibility
     @State var preferredColorScheme: ColorScheme = .light
     @State var layoutDirection: LayoutDirection = .leftToRight
+    
+    private var sections: [String: [Exhibit]] {
+        Dictionary(grouping: searchResults, by: \.section)
+    }
 
     func displayBinding(for id: AnyHashable) -> Binding<Bool> {
         Binding(
@@ -31,8 +35,18 @@ public struct Exhibition: View {
 
     public var body: some View {
         NavigationView {
-            List(searchResults) { exhibit in
-                NavigationLink(exhibit.id, destination: debuggable(exhibit))
+            List(sections.sorted(by: keyAscending), id: \.key) { section in
+                if section.key.isEmpty {
+                    ForEach(section.value) { exhibit in
+                        NavigationLink(exhibit.id, destination: debuggable(exhibit))
+                    }
+                } else {
+                    Section(section.key) {
+                        ForEach(section.value) { exhibit in
+                            NavigationLink(exhibit.id, destination: debuggable(exhibit))
+                        }
+                    }
+                }
             }
             .searchable(text: $searchText)
             .navigationTitle("Exhibit")
@@ -87,7 +101,8 @@ public struct Exhibition: View {
             return exhibits
         } else {
             return exhibits.filter {
-                $0.id.localizedCaseInsensitiveContains(searchText)
+                $0.id.localizedCaseInsensitiveContains(searchText) ||
+                $0.section.localizedCaseInsensitiveContains(searchText)
             }
         }
     }
@@ -97,28 +112,13 @@ struct Exhibition_Previews: PreviewProvider {
     static var previews: some View {
         Exhibition(
             exhibits: [
-                .init(name: "Text") { parameters in
+                .init(name: "Text", section: "Section 1") { parameters in
+                    Text(parameters.constant(name: "Content", defaultValue: "Text"))
+                },
+                .init(name: "Text2", section: "Section 2") { parameters in
                     Text(parameters.constant(name: "Content", defaultValue: "Text"))
                 }
             ]
         )
-
-        GroupBox {
-            GroupBox {
-                GroupBox {
-                    Text("sgsdgsdgfgdfg")
-                }
-            }
-        }
-        .previewLayout(.sizeThatFits)
-
-        GroupBox {
-            VStack {
-                GroupBox {
-                    Text("sgsdgsdgfgdfg")
-                }
-            }
-        }
-        .previewLayout(.sizeThatFits)
     }
 }

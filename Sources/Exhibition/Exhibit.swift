@@ -3,12 +3,14 @@ import SwiftUI
 public struct Exhibit: View {
  
     let name: String
+    let section: String
     let view: (Parameters) -> AnyView
     
     @ObservedObject var parameters = Parameters()
     
-    public init<T: View>(name: String, @ViewBuilder _ builder: @escaping (Parameters) -> T) {
+    public init<T: View>(name: String, section: String = "", @ViewBuilder _ builder: @escaping (Parameters) -> T) {
         self.name = name
+        self.section = section
         view = { parameters in AnyView(builder(parameters)) }
     }
     

@@ -28,7 +28,7 @@ struct DebugView: View {
                 if parameters.values.isEmpty == false {
                     Section("Parameters") {
                         ForEach(
-                            parameters.values.sorted(by: parameterSort), id: \.key,
+                            parameters.values.sorted(by: keyAscending), id: \.key,
                             content: parameterView
                         )
                     }
@@ -45,10 +45,6 @@ struct DebugView: View {
             }
         }
         .preferredColorScheme(preferredColorScheme)
-    }
-    
-    private func parameterSort(left: (key: String, value: Any), right: (key: String, value: Any)) -> Bool {
-        return left.key < right.key
     }
     
     private func parameterView(parameter: (key: String, value: Any)) -> AnyView? {
