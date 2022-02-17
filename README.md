@@ -18,10 +18,10 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
     import Exhibition
     
     struct Foo_Previews: ExhibitProvider, PreviewProvider {
-        static var exhibit = Exhibit(name: "Foo") { parameters in
+        static var exhibit = Exhibit(name: "Foo") { context in
             Foo(
-                title: parameters.constant(name: "title", defaultValue: "Title"),
-                content: parameters.binding(name: "content")
+                title: context.parameter(name: "title", defaultValue: "Title"),
+                content: context.parameter(name: "content")
             )
             .previewLayout(.sizeThatFits)
         }

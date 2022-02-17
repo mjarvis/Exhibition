@@ -3,17 +3,17 @@ import SwiftUI
 public struct Exhibit: View {
  
     let name: String
-    let view: (Parameters) -> AnyView
+    let view: (Context) -> AnyView
     
-    @ObservedObject var parameters = Parameters()
+    @ObservedObject var context = Context()
     
-    public init<T: View>(name: String, @ViewBuilder _ builder: @escaping (Parameters) -> T) {
+    public init<T: View>(name: String, @ViewBuilder _ builder: @escaping (Context) -> T) {
         self.name = name
-        view = { parameters in AnyView(builder(parameters)) }
+        view = { context in AnyView(builder(context)) }
     }
     
     public var body: some View {
-        view(parameters)
+        view(context)
             .navigationTitle(name)
     }
 }
@@ -24,36 +24,3 @@ extension Exhibit: Identifiable {
     }
 }
 
-extension Exhibit {
-    public class Parameters: ObservableObject {
-        @Published var values: [String: Any] = [:]
-        
-        public func constant<T>(name: String, defaultValue: T) -> T {
-            guard let binding = values[name] else {
-                values[name] = defaultValue
-                return defaultValue
-            }
-            
-            return binding as! T
-        }
-        
-        public func constant<T>(name: String) -> T where T: Defaultable {
-            constant(name: name, defaultValue: T.defaultValue)
-        }
-        
-        public func binding<T>(name: String, defaultValue: T) -> Binding<T> {
-            return Binding(
-                get: { [unowned self] in
-                    self.constant(name: name, defaultValue: defaultValue)
-                },
-                set: { [unowned self] newValue in
-                    values[name] = newValue
-                }
-            )
-        }
-        
-        public func binding<T>(name: String) -> Binding<T> where T: Defaultable {
-            binding(name: name, defaultValue: T.defaultValue)
-        }
-    }
-}

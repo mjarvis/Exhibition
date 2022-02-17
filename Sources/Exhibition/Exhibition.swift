@@ -48,7 +48,7 @@ public struct Exhibition: View {
             }
             .sheet(isPresented: $debugViewPresented) {
                 DebugView(
-                    parameters: .init(),
+                    context: .init(),
                     preferredColorScheme: $preferredColorScheme,
                     layoutDirection: $layoutDirection
                 )
@@ -71,7 +71,7 @@ public struct Exhibition: View {
             }
             .sheet(isPresented: $debugViewPresented) {
                 DebugView(
-                    parameters: exhibit.parameters,
+                    context: exhibit.context,
                     preferredColorScheme: $preferredColorScheme,
                     layoutDirection: $layoutDirection
                 )
@@ -97,8 +97,8 @@ struct Exhibition_Previews: PreviewProvider {
     static var previews: some View {
         Exhibition(
             exhibits: [
-                .init(name: "Text") { parameters in
-                    Text(parameters.constant(name: "Content", defaultValue: "Text"))
+                .init(name: "Text") { context in
+                    Text(context.parameter(name: "Content", defaultValue: "Text"))
                 }
             ]
         )
