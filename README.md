@@ -56,13 +56,13 @@ exhibition
 
 - [x] Debug (#1)
     - [x] Dark mode (#1)
-    - [ ] RTL
+    - [x] RTL (#11)
     - [ ] Text sizing
     - [ ] Investigate other assistive switches
 
-- [ ] Search (#2)
-    - Search top level
-    - Search nested
+- [x] Search (#2)
+    - [x] Search top level
+    - [ ] Search nested
 
 - [ ] Sections (#5)
     - [ ] Collapsing
@@ -70,7 +70,7 @@ exhibition
         - [ ] Icon
         - [ ] Title
 
-- [ ] Exhibit
+- [x] Exhibit
     - [x] Push
     - [ ] Present
     - [ ] Layout rules (#4)
@@ -78,13 +78,11 @@ exhibition
     
     - [ ] Code samples (copy-able snippets)
     - [ ] Code documentation (jazzy / swiftdocc)
+    - [ ] Metadata (JSON output)
 
 - [ ] Layout
-    - [ ] iPhone
+    - [x] iPhone
     - [ ] iPad
     - [ ] macOS
     - [ ] watchOS
     - [ ] tvOS
-
-
-Metadata?
