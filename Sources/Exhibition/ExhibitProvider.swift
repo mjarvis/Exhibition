@@ -7,5 +7,6 @@ public protocol ExhibitProvider {
 public extension ExhibitProvider {
     static var previews: some View {
         exhibit
+            .previewLayout(.sizeThatFits)
     }
 }
