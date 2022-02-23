@@ -17,5 +17,8 @@ struct CustomToggle_Previews: ExhibitProvider, PreviewProvider {
             isOn: context.parameter(name: "isOn")
         )
             .previewLayout(.sizeThatFits)
+    } layout: { exhibit in
+        exhibit
+            .padding()
     }
 }

@@ -76,7 +76,7 @@ exhibition
 - [x] Exhibit
     - [x] Push
     - [ ] Present
-    - [ ] Layout rules (#4)
+    - [x] Layout rules (#4)
     - [x] Parameters (#3)
     
     - [ ] Code samples (copy-able snippets)

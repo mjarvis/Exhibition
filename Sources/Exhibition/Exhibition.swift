@@ -73,7 +73,7 @@ public struct Exhibition: View {
     }
     
     private func debuggable(_ exhibit: Exhibit) -> some View {
-        exhibit
+        exhibit.layout(exhibit)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
