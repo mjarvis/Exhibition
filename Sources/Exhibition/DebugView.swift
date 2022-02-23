@@ -2,7 +2,7 @@ import SwiftUI
 
 /// A presented view used to modify accessibility and exhibit parameters.
 struct DebugView: View {
-    @ObservedObject var parameters: Exhibit.Parameters
+    @ObservedObject var context: Exhibit.Context
     
     @Binding var preferredColorScheme: ColorScheme
     @Binding var layoutDirection: LayoutDirection
@@ -25,12 +25,19 @@ struct DebugView: View {
                     }
                 }
                 
-                if parameters.values.isEmpty == false {
+                if context.parameters.isEmpty == false {
                     Section("Parameters") {
                         ForEach(
-                            parameters.values.sorted(by: parameterSort), id: \.key,
+                            context.parameters.sorted(by: parameterSort), id: \.key,
                             content: parameterView
                         )
+                    }
+                }
+                
+                if context.log.isEmpty == false {
+                    Section("Log") {
+                        Text(context.log.joined(separator: "\n"))
+                            .textSelection(.enabled)
                     }
                 }
             }
@@ -55,7 +62,7 @@ struct DebugView: View {
         let view = parameterViews
             .lazy
             .compactMap { parameterView in
-                parameterView(parameter.key, parameter.value, parameters)
+                parameterView(parameter.key, parameter.value, context)
             }
             .first
         

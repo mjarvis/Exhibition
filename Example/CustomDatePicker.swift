@@ -11,10 +11,10 @@ struct CustomDatePicker: View {
 }
 
 struct CustomDatePicker_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibit: Exhibit = Exhibit(name: "CustomDatePicker") { parameters in
+    static var exhibit: Exhibit = Exhibit(name: "CustomDatePicker") { context in
         CustomDatePicker(
-            title: parameters.constant(name: "title", defaultValue: "Title"),
-            date: parameters.binding(name: "date")
+            title: context.parameter(name: "title", defaultValue: "Title"),
+            date: context.parameter(name: "date")
         )
     }
 }
