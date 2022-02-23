@@ -11,7 +11,7 @@ public struct Exhibit: View {
     public init<T: View>(name: String, section: String = "", @ViewBuilder _ builder: @escaping (Context) -> T) {
         self.name = name
         self.section = section
-        view = { parameters in AnyView(builder(context)) }
+        view = { context in AnyView(builder(context)) }
     }
     
     public var body: some View {
