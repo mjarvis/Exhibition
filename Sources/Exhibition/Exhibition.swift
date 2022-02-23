@@ -5,7 +5,8 @@ public struct Exhibition: View {
     let exhibits: [Exhibit]
 
     @State var displayed: AnyHashable?
-    @State var debugViewPresented: Bool = false
+    @State var rootDebugViewPresented: Bool = false
+    @State var exhibitDebugViewPresented: Bool = false
     @State var searchText = ""
 
     // MARK: Accessibility
@@ -54,13 +55,13 @@ public struct Exhibition: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        debugViewPresented = true
+                        rootDebugViewPresented = true
                     } label: {
                         Image(systemName: "gear")
                     }
                 }
             }
-            .sheet(isPresented: $debugViewPresented) {
+            .sheet(isPresented: $rootDebugViewPresented) {
                 DebugView(
                     context: .init(),
                     preferredColorScheme: $preferredColorScheme,
@@ -77,13 +78,13 @@ public struct Exhibition: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        debugViewPresented = true
+                        exhibitDebugViewPresented = true
                     } label: {
                         Image(systemName: "gear")
                     }
                 }
             }
-            .sheet(isPresented: $debugViewPresented) {
+            .sheet(isPresented: $exhibitDebugViewPresented) {
                 DebugView(
                     context: exhibit.context,
                     preferredColorScheme: $preferredColorScheme,

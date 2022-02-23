@@ -85,7 +85,7 @@ exhibition
 
 - [ ] Layout
     - [x] iPhone
-    - [ ] iPad
+    - [x] iPad
     - [ ] macOS
     - [ ] watchOS
     - [ ] tvOS
