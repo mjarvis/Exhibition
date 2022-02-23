@@ -18,7 +18,10 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
     import Exhibition
     
     struct Foo_Previews: ExhibitProvider, PreviewProvider {
-        static var exhibit = Exhibit(name: "Foo") { context in
+        static var exhibit = Exhibit(
+            name: "Foo",
+            section: "Bar"
+        ) { context in
             Foo(
                 title: context.parameter(name: "title", defaultValue: "Title"),
                 content: context.parameter(name: "content")
@@ -64,8 +67,8 @@ exhibition
     - [x] Search top level
     - [ ] Search nested
 
-- [ ] Sections (#5)
-    - [ ] Collapsing
+- [x] Sections (#5)
+    - [x] Collapsing
     - [ ] Rows
         - [ ] Icon
         - [ ] Title
