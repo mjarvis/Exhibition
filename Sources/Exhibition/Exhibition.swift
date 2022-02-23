@@ -80,6 +80,7 @@ public struct Exhibition: View {
             .parameterView(BoolParameterView.self)
             .parameterView(IntParameterView.self)
             .parameterView(DateParameterView.self)
+            .parameterView(ClosureParameterView.self)
     }
     
     private var searchResults: [Exhibit] {
