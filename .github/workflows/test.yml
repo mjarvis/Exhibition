@@ -23,9 +23,9 @@ jobs:
         - sdk: "iphonesimulator"
           destination: "platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro Max"
           
-        # Latest macOS (disabled due to lack of macOS UI support)
-        #- sdk: "macosx12.1"
-        #destination: "platform=macOS"
+        # Latest macOS
+        - sdk: "macosx12.1"
+          destination: "platform=macOS"
     
     steps:
       - name: Checkout
@@ -55,11 +55,13 @@ jobs:
           
         # Latest iOS Build
         - sdk: "iphonesimulator"
+          scheme: "Example (iOS)"
           destination: "platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro Max"
         
-        # Latest macOS (disabled due to lack of macOS UI support)
-        #- sdk: "macosx12.1"
-        #destination: "platform=macOS"
+        # Latest macOS
+        - sdk: "macosx12.1"
+          scheme: "Example (macOS)"
+          destination: "platform=macOS"
     
     steps:
       - name: Checkout
@@ -77,6 +79,6 @@ jobs:
         run: |
           xcodebuild build \
             -project "Example.xcodeproj" \
-            -scheme "Example" \
+            -scheme "${{ matrix.scheme }}" \
             -sdk "${{ matrix.sdk }}" \
             -destination "${{ matrix.destination }}"

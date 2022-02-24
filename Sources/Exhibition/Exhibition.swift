@@ -51,9 +51,8 @@ public struct Exhibition: View {
             }
             .searchable(text: $searchText)
             .navigationTitle("Exhibit")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem {
                     Button {
                         rootDebugViewPresented = true
                     } label: {
@@ -76,7 +75,7 @@ public struct Exhibition: View {
     private func debuggable(_ exhibit: Exhibit) -> some View {
         exhibit.layout(exhibit)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem {
                     Button {
                         exhibitDebugViewPresented = true
                     } label: {

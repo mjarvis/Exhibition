@@ -42,9 +42,8 @@ struct DebugView: View {
                 }
             }
             .navigationTitle("Debug")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem {
                     Button("Done") {
                         dismiss()
                     }
