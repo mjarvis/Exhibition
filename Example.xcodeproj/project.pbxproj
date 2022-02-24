@@ -15,6 +15,7 @@
 		D4B3610927B18839001F5E20 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B3610827B18839001F5E20 /* CustomButton.swift */; };
 		D4B3611127B1896A001F5E20 /* Exhibition in Frameworks */ = {isa = PBXBuildFile; productRef = D4B3611027B1896A001F5E20 /* Exhibition */; };
 		D4C4975327B451950061244C /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4975227B451950061244C /* CustomToggle.swift */; };
+		D4E48B7627C8022A00A8D8F0 /* CustomPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E48B7527C8022A00A8D8F0 /* CustomPopover.swift */; };
 		D4E576A327B5988A00A97BB7 /* Exhibition.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		D4B360FF27B187EE001F5E20 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D4B3610827B18839001F5E20 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D4C4975227B451950061244C /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
+		D4E48B7527C8022A00A8D8F0 /* CustomPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPopover.swift; sourceTree = "<group>"; };
 		D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibition.generated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 				D4B3610827B18839001F5E20 /* CustomButton.swift */,
 				D4C4975227B451950061244C /* CustomToggle.swift */,
 				D42B337A27BD7E710071C18E /* CustomDatePicker.swift */,
+				D4E48B7527C8022A00A8D8F0 /* CustomPopover.swift */,
 				D4B360F827B187EC001F5E20 /* ExampleApp.swift */,
 				D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */,
 				D4B360FC27B187EE001F5E20 /* Assets.xcassets */,
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E48B7627C8022A00A8D8F0 /* CustomPopover.swift in Sources */,
 				D4E576A327B5988A00A97BB7 /* Exhibition.generated.swift in Sources */,
 				D4B360FB27B187EC001F5E20 /* ContentView.swift in Sources */,
 				D42B337B27BD7E710071C18E /* CustomDatePicker.swift in Sources */,

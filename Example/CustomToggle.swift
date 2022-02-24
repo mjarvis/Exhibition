@@ -11,13 +11,13 @@ struct CustomToggle: View {
 }
 
 struct CustomToggle_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibit = Exhibit(name: "CustomToggle") { context in
+    static var exhibit = Exhibit(name: "CustomToggle") { exhibit in
+        exhibit
+            .padding()
+    } builder: { context in
         CustomToggle(
             title: context.parameter(name: "title", defaultValue: "Title"),
             isOn: context.parameter(name: "isOn")
         )
-    } layout: { exhibit in
-        exhibit
-            .padding()
     }
 }

@@ -12,8 +12,8 @@ public struct Exhibit: View {
     public init<T: View, S: View>(
         name: String,
         section: String = "",
-        @ViewBuilder builder: @escaping (Context) -> T,
-        @ViewBuilder layout: @escaping (Self) -> S
+        @ViewBuilder layout: @escaping (Self) -> S,
+        @ViewBuilder builder: @escaping (Context) -> T
     ) {
         self.name = name
         self.section = section
@@ -42,7 +42,8 @@ extension Exhibit {
         self.init(
             name: name,
             section: section,
+            layout: { AnyView($0) },
             builder: builder
-        ) { AnyView($0) }
+        )
     }
 }
