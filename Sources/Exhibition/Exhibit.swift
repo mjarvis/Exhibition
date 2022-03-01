@@ -19,6 +19,8 @@ public struct Exhibit: View {
         self.section = section
         view = { context in AnyView(builder(context)) }
         self.layout = { exhibit in AnyView(layout(exhibit)) }
+        
+        _ = builder(context) // Ensure context is filled
     }
     
     public var body: some View {
