@@ -37,14 +37,20 @@ struct DebugView: View {
                 if context.log.isEmpty == false {
                     Section("Log") {
                         Text(context.log.joined(separator: "\n"))
-                            .textSelection(.enabled)
+                            .modify {
+                                #if os(iOS)
+                                    $0.textSelection(.enabled)
+                                #else
+                                    $0
+                                #endif
+                            }
                     }
                 }
             }
             .navigationTitle("Debug")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem {
                     Button("Done") {
                         dismiss()
                     }
