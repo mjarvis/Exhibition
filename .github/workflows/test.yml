@@ -25,7 +25,7 @@ jobs:
           
         # Latest watchOS
         - sdk: "watchsimulator"
-          destination: "OS=8.3,Apple Watch Series 7 - 45mm"
+          destination: "OS=8.3,name=Apple Watch Series 7 - 45mm"
           
         # Latest macOS (disabled due to lack of macOS UI support)
         #- sdk: "macosx12.1"
