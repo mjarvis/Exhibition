@@ -27,7 +27,7 @@ struct ClosureParameterView: ParameterView {
             Spacer()
             Text(value.signature)
             Spacer()
-            Text(value.callCount.formatted())
+            Text("\(value.callCount)")
         }
     }
 }

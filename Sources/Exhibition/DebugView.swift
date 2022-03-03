@@ -7,13 +7,13 @@ struct DebugView: View {
     @Binding var preferredColorScheme: ColorScheme
     @Binding var layoutDirection: LayoutDirection
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.parameterViews) var parameterViews
     
     var body: some View {
         NavigationView {
             Form {
-                Section("Accessibility") {
+                Section {
                     Picker("Color Scheme", selection: $preferredColorScheme) {
                         Text("Light").tag(ColorScheme.light)
                         Text("Dark").tag(ColorScheme.dark)
@@ -23,19 +23,23 @@ struct DebugView: View {
                         Text("Left to Right").tag(LayoutDirection.leftToRight)
                         Text("Right to Left").tag(LayoutDirection.rightToLeft)
                     }
+                } header: {
+                    Text("Accessibility")
                 }
                 
                 if context.parameters.isEmpty == false {
-                    Section("Parameters") {
+                    Section {
                         ForEach(
                             context.parameters.sorted(by: keyAscending), id: \.key,
                             content: parameterView
                         )
+                    } header: {
+                        Text("Parameters")
                     }
                 }
                 
                 if context.log.isEmpty == false {
-                    Section("Log") {
+                    Section {
                         Text(context.log.joined(separator: "\n"))
                             .modify {
                                 #if os(iOS)
@@ -44,6 +48,8 @@ struct DebugView: View {
                                     $0
                                 #endif
                             }
+                    } header: {
+                        Text("Log")
                     }
                 }
             }
@@ -51,7 +57,7 @@ struct DebugView: View {
             .toolbar {
                 ToolbarItem {
                     Button("Done") {
-                        dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
             }

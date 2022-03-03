@@ -16,8 +16,8 @@ extension View {
     ///     }
     ///
     /// - Returns: A modified view
-    @ViewBuilder public func modify<Output: View>(
-        _ block: (Self) -> Output
+    func modify<Output: View>(
+        @ViewBuilder _ block: (Self) -> Output
     ) -> some View {
         block(self)
     }

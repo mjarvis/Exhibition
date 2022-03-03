@@ -42,14 +42,22 @@ public struct Exhibition: View {
                         NavigationLink(exhibit.id, destination: debuggable(exhibit))
                     }
                 } else {
-                    Section(section.key) {
+                    Section {
                         ForEach(section.value) { exhibit in
                             NavigationLink(exhibit.id, destination: debuggable(exhibit))
                         }
+                    } header: {
+                        Text(section.key)
                     }
                 }
             }
-            .searchable(text: $searchText)
+            .modify {
+                if #available(macOS 12.0, *) {
+                    $0.searchable(text: $searchText)
+                } else {
+                    $0
+                }
+            }
             .navigationTitle("Exhibit")
             .toolbar {
                 ToolbarItem {

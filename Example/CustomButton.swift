@@ -7,7 +7,7 @@ struct CustomButton: View {
     
     var body: some View {
         Button(title) {
-            action(.now)
+            action(Date())
         }
     }
 }

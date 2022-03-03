@@ -33,5 +33,5 @@ extension Dictionary: Defaultable {
 }
 
 extension Date: Defaultable {
-    public static var defaultValue: Date = .now
+    public static var defaultValue: Date = Date()
 }
