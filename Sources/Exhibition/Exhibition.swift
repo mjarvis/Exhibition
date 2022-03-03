@@ -16,6 +16,8 @@ public struct Exhibition: View {
     private var sections: [String: [Exhibit]] {
         Dictionary(grouping: searchResults, by: \.section)
     }
+    
+    private var closeAction: (() -> Void)?
 
     func displayBinding(for id: AnyHashable) -> Binding<Bool> {
         Binding(
@@ -30,8 +32,9 @@ public struct Exhibition: View {
         )
     }
 
-    public init(exhibits: [Exhibit]) {
+    public init(exhibits: [Exhibit], closeAction: (() -> Void)? = nil) {
         self.exhibits = exhibits
+        self.closeAction = closeAction
     }
 
     public var body: some View {
@@ -60,6 +63,13 @@ public struct Exhibition: View {
             }
             .navigationTitle("Exhibit")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        closeAction?()
+                    } label: {
+                        Text("Close")
+                    }
+                }
                 ToolbarItem {
                     Button {
                         rootDebugViewPresented = true
@@ -78,6 +88,7 @@ public struct Exhibition: View {
         }
         .preferredColorScheme(preferredColorScheme)
         .environment(\.layoutDirection, layoutDirection)
+        
     }
     
     private func debuggable(_ exhibit: Exhibit) -> some View {
