@@ -51,7 +51,7 @@ struct DoublingStringParameterView: ParameterView {
     }
 }
 
-exhibition
+Exhibition()
     .parameterView(DoublingStringParameterView.self)
 ```
 

@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct Exhibition: View {
+public struct ExhibitListView: View {
 
     let exhibits: [Exhibit]
 
@@ -12,6 +12,8 @@ public struct Exhibition: View {
     // MARK: Accessibility
     @State var preferredColorScheme: ColorScheme = .light
     @State var layoutDirection: LayoutDirection = .leftToRight
+    
+    @Environment(\.presentationMode) var presentationMode
     
     private var sections: [String: [Exhibit]] {
         Dictionary(grouping: searchResults, by: \.section)
@@ -33,48 +35,57 @@ public struct Exhibition: View {
     public init(exhibits: [Exhibit]) {
         self.exhibits = exhibits
     }
-
+    
     public var body: some View {
-        NavigationView {
-            List(sections.sorted(by: keyAscending), id: \.key) { section in
-                if section.key.isEmpty {
+        List(sections.sorted(by: keyAscending), id: \.key) { section in
+            if section.key.isEmpty {
+                ForEach(section.value) { exhibit in
+                    NavigationLink(exhibit.id, destination: debuggable(exhibit))
+                }
+            } else {
+                Section {
                     ForEach(section.value) { exhibit in
                         NavigationLink(exhibit.id, destination: debuggable(exhibit))
                     }
-                } else {
-                    Section {
-                        ForEach(section.value) { exhibit in
-                            NavigationLink(exhibit.id, destination: debuggable(exhibit))
-                        }
-                    } header: {
-                        Text(section.key)
+                } header: {
+                    Text(section.key)
+                }
+            }
+        }
+        .modify {
+            if #available(macOS 12.0, *) {
+                $0.searchable(text: $searchText)
+            } else {
+                $0
+            }
+        }
+        .navigationTitle("Exhibit")
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    rootDebugViewPresented = true
+                } label: {
+                    Image(systemName: "gear")
+                }
+            }
+        }
+        .if(presentationMode.wrappedValue.isPresented) {
+            $0.toolbar {
+                #if !os(macOS) && !os(watchOS)
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Close") {
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
+                #endif
             }
-            .modify {
-                if #available(macOS 12.0, *) {
-                    $0.searchable(text: $searchText)
-                } else {
-                    $0
-                }
-            }
-            .navigationTitle("Exhibit")
-            .toolbar {
-                ToolbarItem {
-                    Button {
-                        rootDebugViewPresented = true
-                    } label: {
-                        Image(systemName: "gear")
-                    }
-                }
-            }
-            .sheet(isPresented: $rootDebugViewPresented) {
-                DebugView(
-                    context: .init(),
-                    preferredColorScheme: $preferredColorScheme,
-                    layoutDirection: $layoutDirection
-                )
-            }
+        }
+        .sheet(isPresented: $rootDebugViewPresented) {
+            DebugView(
+                context: .init(),
+                preferredColorScheme: $preferredColorScheme,
+                layoutDirection: $layoutDirection
+            )
         }
         .preferredColorScheme(preferredColorScheme)
         .environment(\.layoutDirection, layoutDirection)
@@ -117,9 +128,9 @@ public struct Exhibition: View {
     }
 }
 
-struct Exhibition_Previews: PreviewProvider {
+struct ExhibitListView_Previews: PreviewProvider {
     static var previews: some View {
-        Exhibition(
+        ExhibitListView(
             exhibits: [
                 .init(name: "Text", section: "Section 1") { context in
                     Text(context.parameter(name: "Content", defaultValue: "Text"))
