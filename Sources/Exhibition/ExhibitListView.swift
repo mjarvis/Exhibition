@@ -2,7 +2,7 @@ import SwiftUI
 
 public struct ExhibitListView: View {
 
-    let exhibits: [Exhibit]
+    let exhibits: [AnyExhibit]
 
     @State var displayed: AnyHashable?
     @State var rootDebugViewPresented: Bool = false
@@ -13,7 +13,7 @@ public struct ExhibitListView: View {
     @State var preferredColorScheme: ColorScheme = .light
     @State var layoutDirection: LayoutDirection = .leftToRight
     
-    private var sections: [String: [Exhibit]] {
+    private var sections: [String: [AnyExhibit]] {
         Dictionary(grouping: searchResults, by: \.section)
     }
 
@@ -30,7 +30,7 @@ public struct ExhibitListView: View {
         )
     }
 
-    public init(exhibits: [Exhibit]) {
+    public init(exhibits: [AnyExhibit]) {
         self.exhibits = exhibits
     }
     
@@ -78,8 +78,9 @@ public struct ExhibitListView: View {
         .environment(\.layoutDirection, layoutDirection)
     }
     
-    private func debuggable(_ exhibit: Exhibit) -> some View {
-        exhibit.layout(exhibit)
+    private func debuggable(_ exhibit: AnyExhibit) -> some View {
+        let context = Context()
+        return AnyExhibitView(exhibit: exhibit, context: context)
             .toolbar {
                 ToolbarItem {
                     Button {
@@ -91,7 +92,7 @@ public struct ExhibitListView: View {
             }
             .sheet(isPresented: $exhibitDebugViewPresented) {
                 DebugView(
-                    context: exhibit.context,
+                    context: context,
                     preferredColorScheme: $preferredColorScheme,
                     layoutDirection: $layoutDirection
                 )
@@ -103,7 +104,7 @@ public struct ExhibitListView: View {
             .parameterView(ClosureParameterView.self)
     }
     
-    private var searchResults: [Exhibit] {
+    private var searchResults: [AnyExhibit] {
         if searchText.isEmpty {
             return exhibits
         } else {
@@ -116,15 +117,23 @@ public struct ExhibitListView: View {
 }
 
 struct ExhibitListView_Previews: PreviewProvider {
+    struct First: ExhibitProvider {
+        static let exhibit = Exhibit(name: "Text", section: "Section 1") { context in
+            Text(context.parameter(name: "Content", defaultValue: "Text"))
+        }
+    }
+    
+    struct Second: ExhibitProvider {
+        static let exhibit = Exhibit(name: "Text", section: "Section 1") { context in
+            Text(context.parameter(name: "Content", defaultValue: "Text"))
+        }
+    }
+    
     static var previews: some View {
         ExhibitListView(
             exhibits: [
-                .init(name: "Text", section: "Section 1") { context in
-                    Text(context.parameter(name: "Content", defaultValue: "Text"))
-                },
-                .init(name: "Text2", section: "Section 2") { context in
-                    Text(context.parameter(name: "Content", defaultValue: "Text"))
-                }
+                First.anyExhibit,
+                Second.anyExhibit,
             ]
         )
     }

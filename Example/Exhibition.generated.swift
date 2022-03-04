@@ -8,9 +8,9 @@ public struct Exhibition: View {
         NavigationView {
             ExhibitListView(
                 exhibits: [
-                    CustomButton_Previews.exhibit,
-                    CustomDatePicker_Previews.exhibit,
-                    CustomToggle_Previews.exhibit,
+                    CustomButton_Previews.anyExhibit,
+                    CustomDatePicker_Previews.anyExhibit,
+                    CustomToggle_Previews.anyExhibit,
                 ]
             )
         }

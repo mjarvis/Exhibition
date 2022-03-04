@@ -1,48 +1,65 @@
 import SwiftUI
 
-public struct Exhibit: View {
+public struct Exhibit<Content: View> {
  
     let name: String
     let section: String
-    let view: (Context) -> AnyView
-    let layout: (Self) -> AnyView
-
-    @ObservedObject var context = Context()
+    let content: (Context) -> Content
     
-    public init<T: View, S: View>(
+    public init(
         name: String,
         section: String = "",
-        @ViewBuilder builder: @escaping (Context) -> T,
-        @ViewBuilder layout: @escaping (Self) -> S
+        @ViewBuilder builder: @escaping (Context) -> Content
     ) {
         self.name = name
         self.section = section
-        view = { context in AnyView(builder(context)) }
-        self.layout = { exhibit in AnyView(layout(exhibit)) }
-    }
-    
-    public var body: some View {
-        view(context)
-            .navigationTitle(name)
+        self.content = builder
     }
 }
 
-extension Exhibit: Identifiable {
+extension Exhibit {
+    @ViewBuilder public func preview(parameters: [String: Any] = [:]) -> some View {
+        ExhibitView(
+            exhibit: self,
+            context: Context(parameters: parameters)
+        )
+    }
+}
+
+struct ExhibitView<Content: View>: View {
+    let exhibit: Exhibit<Content>
+    @ObservedObject var context: Context
+    
+    var body: some View {
+        exhibit.content(context)
+    }
+}
+
+public struct AnyExhibit {
+    let name: String
+    let section: String
+    let content: (Context) -> AnyView
+    
+    init<Content: View, Layout: View>(_ exhibit: Exhibit<Content>, layout: @escaping (Content) -> Layout) {
+        self.name = exhibit.name
+        self.section = exhibit.section
+        self.content = { context in
+            AnyView(layout(exhibit.content(context)))
+        }
+    }
+}
+
+extension AnyExhibit: Identifiable {
     public var id: String {
         name
     }
 }
 
-extension Exhibit {
-    public init<T: View>(
-        name: String,
-        section: String = "",
-        @ViewBuilder builder: @escaping (Context) -> T
-    ) {
-        self.init(
-            name: name,
-            section: section,
-            builder: builder
-        ) { AnyView($0) }
+struct AnyExhibitView: View {
+    let exhibit: AnyExhibit
+    @ObservedObject var context: Context
+    
+    var body: some View {
+        exhibit.content(context)
     }
 }

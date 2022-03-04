@@ -19,5 +19,13 @@ struct CustomButton_Previews: ExhibitProvider, PreviewProvider {
             action: context.parameter(name: "action")
         )
     }
+    
+    static var previews: some View {
+        exhibit.preview()
+            .previewLayout(.sizeThatFits)
+        
+        exhibit.preview(parameters: ["title": "Other"])
+            .previewLayout(.sizeThatFits)
+    }
 }
 

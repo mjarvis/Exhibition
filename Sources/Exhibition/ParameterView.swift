@@ -25,7 +25,7 @@ extension View {
 // MARK: - Internal
 
 /// Type erased parameter view for storage in an array.
-typealias AnyParameterView = (String, Any, Exhibit.Context) -> AnyView?
+typealias AnyParameterView = (String, Any, Context) -> AnyView?
 func erase<P: ParameterView>(_ parameterView: P.Type) -> AnyParameterView {
     return { name, value, parameters in
         guard let value = value as? P.Value else {
