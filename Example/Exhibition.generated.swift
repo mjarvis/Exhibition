@@ -3,16 +3,22 @@
 import Exhibition
 import SwiftUI
 
-public let exhibition = Exhibition(
-    exhibits: [
-        CustomButton_Previews.anyExhibit,
-        CustomDatePicker_Previews.anyExhibit,
-        CustomToggle_Previews.anyExhibit,
-    ]
-)
+public struct Exhibition: View {
+    public var body: some View {
+        NavigationView {
+            ExhibitListView(
+                exhibits: [
+                    CustomButton_Previews.anyExhibit,
+                    CustomDatePicker_Previews.anyExhibit,
+                    CustomToggle_Previews.anyExhibit,
+                ]
+            )
+        }
+    }
+}
 
 struct Exhibition_Previews: PreviewProvider {
     static var previews: some View {
-        exhibition
+        Exhibition()
     }
 }

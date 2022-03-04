@@ -2,15 +2,21 @@
 import Exhibition
 import SwiftUI
 
-public let exhibition = Exhibition(
-    exhibits: [<% for type in types.types where type.inheritedTypes.contains("ExhibitProvider") { %>
-        <%= type.name %>.anyExhibit,<% } %>
-    ]
-)
+public struct Exhibition: View {
+    public var body: some View {
+        NavigationView {
+            ExhibitListView(
+                exhibits: [<% for type in types.types where type.inheritedTypes.contains("ExhibitProvider") { %>
+                    <%= type.name %>.anyExhibit,<% } %>
+                ]
+            )
+        }
+    }
+}
 
 struct Exhibition_Previews: PreviewProvider {
     static var previews: some View {
-        exhibition
+        Exhibition()
     }
 }
 // sourcery:end
