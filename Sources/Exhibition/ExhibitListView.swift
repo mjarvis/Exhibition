@@ -13,8 +13,6 @@ public struct ExhibitListView: View {
     @State var preferredColorScheme: ColorScheme = .light
     @State var layoutDirection: LayoutDirection = .leftToRight
     
-    @Environment(\.presentationMode) var presentationMode
-    
     private var sections: [String: [AnyExhibit]] {
         Dictionary(grouping: searchResults, by: \.section)
     }
@@ -67,17 +65,6 @@ public struct ExhibitListView: View {
                 } label: {
                     Image(systemName: "gear")
                 }
-            }
-        }
-        .if(presentationMode.wrappedValue.isPresented) {
-            $0.toolbar {
-                #if !os(macOS) && !os(watchOS)
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Close") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
-                #endif
             }
         }
         .sheet(isPresented: $rootDebugViewPresented) {
