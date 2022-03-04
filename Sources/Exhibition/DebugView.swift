@@ -2,7 +2,7 @@ import SwiftUI
 
 /// A presented view used to modify accessibility and exhibit parameters.
 struct DebugView: View {
-    @ObservedObject var context: Exhibit.Context
+    @ObservedObject var context: Context
     
     @Binding var preferredColorScheme: ColorScheme
     @Binding var layoutDirection: LayoutDirection

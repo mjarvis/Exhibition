@@ -16,8 +16,9 @@ struct CustomToggle_Previews: ExhibitProvider, PreviewProvider {
             title: context.parameter(name: "title", defaultValue: "Title"),
             isOn: context.parameter(name: "isOn")
         )
-    } layout: { exhibit in
-        exhibit
-            .padding()
+    }
+    
+    static func exhibitLayout(_ content: CustomToggle) -> some View {
+        content.padding()
     }
 }

@@ -1,12 +1,28 @@
 import SwiftUI
 
 public protocol ExhibitProvider {
-    static var exhibit: Exhibit { get }
+    associatedtype Content: View
+    associatedtype Layout: View
+    
+    static var exhibit: Exhibit<Content> { get }
+    
+    static func exhibitLayout(_ content: Content) -> Layout
 }
 
 public extension ExhibitProvider {
     static var previews: some View {
         exhibit
+            .preview()
             .previewLayout(.sizeThatFits)
+    }
+    
+    static var anyExhibit: AnyExhibit {
+        AnyExhibit(exhibit, layout: exhibitLayout)
+    }
+}
+
+public extension ExhibitProvider where Content == Layout {
+    static func exhibitLayout(_ content: Content) -> Layout {
+        content
     }
 }

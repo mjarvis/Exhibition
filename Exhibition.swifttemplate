@@ -4,7 +4,7 @@ import SwiftUI
 
 public let exhibition = Exhibition(
     exhibits: [<% for type in types.types where type.inheritedTypes.contains("ExhibitProvider") { %>
-        <%= type.name %>.exhibit,<% } %>
+        <%= type.name %>.anyExhibit,<% } %>
     ]
 )
 
