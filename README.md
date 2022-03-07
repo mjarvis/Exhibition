@@ -1,6 +1,8 @@
 # Exhibition
 
-Exhibition is a framework and generator for displaying a SwiftUI component library.
+![CI](https://github.com/mjarvis/exhibition/actions/workflows/test.yml/badge.svg)
+
+Exhibition is a framework and generator for displaying and debugging a SwiftUI component library.
 
 Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github.com/airbnb/Showkase)
 
