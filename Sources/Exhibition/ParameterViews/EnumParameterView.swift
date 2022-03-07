@@ -1,26 +1,15 @@
 import SwiftUI
 
-public struct EnumParameter {
-    public typealias EnumType = CaseIterable & CustomDebugStringConvertible & Hashable
+public extension Context {
+    /// Helper enum to avoid repetition of protocols below
+    typealias EnumType = CaseIterable & CustomDebugStringConvertible & Hashable
     
-    var current: AnyHashable
-    let cases: [String: AnyHashable]
-    
-    init<E: EnumType>(value: E) {
-        self.current = value
-        self.cases = Dictionary(uniqueKeysWithValues: E.allCases.map {
-            ($0.debugDescription, $0)
-        })
-    }
-    
-    func value<E>() -> E? {
-        return current as? E
-    }
-}
-
-
-public extension Exhibit.Context {
-    func parameter<E: EnumParameter.EnumType>(name: String, defaultValue: E) -> E {
+    /// Create a constant parameter for a selectable Enum
+    /// - Parameters:
+    ///   - name: The debug description name for the parameter.
+    ///   - defaultValue: The initial case for the enum.
+    /// - Returns: The currently selected case of the enum
+    func parameter<E: EnumType>(name: String, defaultValue: E) -> E {
         let parameter: EnumParameter = parameter(
             name: name,
             defaultValue: EnumParameter(value: defaultValue)
@@ -29,7 +18,12 @@ public extension Exhibit.Context {
         return parameter.current as! E
     }
     
-    func parameter<E: EnumParameter.EnumType>(name: String, defaultValue: E) -> Binding<E> {
+    /// Create a binding parameter for a selectable enum
+    /// - Parameters:
+    ///   - name: The debug description name for the parameter.
+    ///   - defaultValue: The initial case for the enum.
+    /// - Returns: A binding for the currently selected case of the enum
+    func parameter<E: EnumType>(name: String, defaultValue: E) -> Binding<E> {
         let parameter: Binding<EnumParameter> = parameter(
             name: name,
             defaultValue: EnumParameter(value: defaultValue)
@@ -42,14 +36,27 @@ public extension Exhibit.Context {
     }
 }
 
-public struct EnumParameterView: ParameterView {
+/// A parameter representing a selectable Enum
+struct EnumParameter {
+    var current: AnyHashable
+    let cases: [String: AnyHashable]
+    
+    init<E: Context.EnumType>(value: E) {
+        self.current = value
+        self.cases = Dictionary(uniqueKeysWithValues: E.allCases.map {
+            ($0.debugDescription, $0)
+        })
+    }
+    
+    func value<E>() -> E? {
+        return current as? E
+    }
+}
+
+/// Debug parameter row for `EnumParameter`
+struct EnumParameterView: ParameterView {
     let key: String
     @Binding var value: EnumParameter
-    
-    public init(key: String, value: Binding<EnumParameter>) {
-        self.key = key
-        _value = value
-    }
     
     public var body: some View {
         Picker(key, selection: $value.current) {

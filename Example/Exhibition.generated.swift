@@ -4,6 +4,8 @@ import Exhibition
 import SwiftUI
 
 public struct Exhibition: View {
+    public init() {}
+    
     public var body: some View {
         NavigationView {
             ExhibitListView(
