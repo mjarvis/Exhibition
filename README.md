@@ -33,7 +33,44 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
     }
     ```
 5. Run `Sourcery` to generate your Exhibition: `sourcery --sources Your/Source/Path --templates Exhibition.swifttemplate --output ./Sources/Generated`
-6. Show `Exhibition()` in a swift view 
+6. Show `Exhibition()` in a swift view
+
+# Custom Layout
+
+If you would like your exhibit to have some custom layout, there is an optional function in `ExhibitProvider` you can implement.
+
+Here is an example of embeding the exhibit within a `List`:
+
+```swift
+    static func exhibitLayout(_ content: Foo) -> some View {
+        List {
+            content
+        }
+    }
+```
+
+You can also provide a custom `View` here to provide presentation samples:
+
+```swift
+    struct CustomLayout: View {
+        let content: Foo
+        
+        @State var isPresented: Bool = false
+        
+        var body: some View {
+            Button("Open") {
+                isPresented = true
+            }
+            .sheet(isPresented: $isPresented) {
+                content
+            }
+        }
+    }
+
+    static func exhibitLayout(_ content: Foo) -> some View {
+        CustomLayout(content: content)
+    }
+```
 
 # Custom Parameter views
 
