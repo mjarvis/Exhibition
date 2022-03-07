@@ -8,12 +8,13 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
 
 ### Swift Package Manager
 
-# Usage
-
-1. Add Exhibition to your project via Swift package manager using `https://github.com/mjarvis/Exhibition.git`
+1. Add `https://github.com/mjarvis/Exhibition` to your project via Xcode.
 2. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery)
 3. Copy [Exhibition.swifttemplate](./Exhibition.swifttemplate) into your project
-4. Modify your SwiftUI previews to use `ExhibitProvider`
+
+# Usage
+
+1. Modify your SwiftUI previews to use `ExhibitProvider`
     ```swift
     import Exhibition
     
@@ -31,7 +32,7 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
     }
     ```
 5. Run `Sourcery` to generate your Exhibition: `sourcery --sources Your/Source/Path --templates Exhibition.swifttemplate --output ./Sources/Generated`
-6. Show `exhibition` in a swift view 
+6. Show `Exhibition()` in a swift view 
 
 # Custom Parameter views
 
