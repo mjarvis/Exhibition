@@ -57,38 +57,3 @@ struct DoublingStringParameterView: ParameterView {
 Exhibition()
     .parameterView(DoublingStringParameterView.self)
 ```
-
-# TODO:
-
-- [x] Debug (#1)
-    - [x] Dark mode (#1)
-    - [x] RTL (#11)
-    - [ ] Text sizing
-    - [ ] Investigate other assistive switches
-
-- [x] Search (#2)
-    - [x] Search top level
-    - [ ] Search nested
-
-- [x] Sections (#5)
-    - [x] Collapsing
-    - [ ] Rows
-        - [ ] Icon
-        - [ ] Title
-
-- [x] Exhibit
-    - [x] Push
-    - [ ] Present
-    - [x] Layout rules (#4)
-    - [x] Parameters (#3)
-    
-    - [ ] Code samples (copy-able snippets)
-    - [ ] Code documentation (jazzy / swiftdocc)
-    - [ ] Metadata (JSON output)
-
-- [ ] Layout
-    - [x] iPhone
-    - [x] iPad
-    - [ ] macOS
-    - [ ] watchOS
-    - [ ] tvOS
