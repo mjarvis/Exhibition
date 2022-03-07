@@ -29,7 +29,6 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
                 title: context.parameter(name: "title", defaultValue: "Title"),
                 content: context.parameter(name: "content")
             )
-            .previewLayout(.sizeThatFits)
         }
     }
     ```
