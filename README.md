@@ -52,8 +52,8 @@ Here is an example of embeding the exhibit within a `List`:
 You can also provide a custom `View` here to provide presentation samples:
 
 ```swift
-    struct CustomLayout: View {
-        let content: Foo
+    struct CustomLayout<Content: View>: View {
+        let content: Content
         
         @State var isPresented: Bool = false
         
