@@ -42,34 +42,34 @@ If you would like your exhibit to have some custom layout, there is an optional 
 Here is an example of embeding the exhibit within a `List`:
 
 ```swift
-    static func exhibitLayout(_ content: Foo) -> some View {
-        List {
-            content
-        }
+static func exhibitLayout(_ content: Foo) -> some View {
+    List {
+        content
     }
+}
 ```
 
 You can also provide a custom `View` here to provide presentation samples:
 
 ```swift
-    struct CustomLayout<Content: View>: View {
-        let content: Content
-        
-        @State var isPresented: Bool = false
-        
-        var body: some View {
-            Button("Open") {
-                isPresented = true
-            }
-            .sheet(isPresented: $isPresented) {
-                content
-            }
+struct CustomLayout<Content: View>: View {
+    let content: Content
+    
+    @State var isPresented: Bool = false
+    
+    var body: some View {
+        Button("Open") {
+            isPresented = true
+        }
+        .sheet(isPresented: $isPresented) {
+            content
         }
     }
+}
 
-    static func exhibitLayout(_ content: Foo) -> some View {
-        CustomLayout(content: content)
-    }
+static func exhibitLayout(_ content: Foo) -> some View {
+    CustomLayout(content: content)
+}
 ```
 
 # Custom Parameter views
