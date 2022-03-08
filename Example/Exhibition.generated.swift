@@ -4,12 +4,15 @@ import Exhibition
 import SwiftUI
 
 public struct Exhibition: View {
+    public init() {}
+    
     public var body: some View {
         NavigationView {
             ExhibitListView(
                 exhibits: [
                     CustomButton_Previews.anyExhibit,
                     CustomDatePicker_Previews.anyExhibit,
+                    CustomSegmentedControl_Previews.anyExhibit,
                     CustomToggle_Previews.anyExhibit,
                 ]
             )
