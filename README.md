@@ -1,6 +1,8 @@
 # Exhibition
 
-Exhibition is a framework and generator for displaying a SwiftUI component library.
+![CI](https://github.com/mjarvis/exhibition/actions/workflows/test.yml/badge.svg)
+
+Exhibition is a framework and generator for displaying and debugging a SwiftUI component library.
 
 Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github.com/airbnb/Showkase)
 
@@ -8,12 +10,13 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
 
 ### Swift Package Manager
 
-# Usage
-
-1. Add Exhibition to your project via Swift package manager using `https://github.com/mjarvis/Exhibition.git`
+1. Add `https://github.com/mjarvis/Exhibition` to your project via Xcode.
 2. Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery)
 3. Copy [Exhibition.swifttemplate](./Exhibition.swifttemplate) into your project
-4. Modify your SwiftUI previews to use `ExhibitProvider`
+
+# Usage
+
+1. Modify your SwiftUI previews to use `ExhibitProvider`
     ```swift
     import Exhibition
     
@@ -26,12 +29,48 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
                 title: context.parameter(name: "title", defaultValue: "Title"),
                 content: context.parameter(name: "content")
             )
-            .previewLayout(.sizeThatFits)
         }
     }
     ```
 5. Run `Sourcery` to generate your Exhibition: `sourcery --sources Your/Source/Path --templates Exhibition.swifttemplate --output ./Sources/Generated`
-6. Show `exhibition` in a swift view 
+6. Show `Exhibition()` in a swift view
+
+# Custom Layout
+
+If you would like your exhibit to have some custom layout, there is an optional function in `ExhibitProvider` you can implement.
+
+Here is an example of embeding the exhibit within a `List`:
+
+```swift
+static func exhibitLayout(_ content: Foo) -> some View {
+    List {
+        content
+    }
+}
+```
+
+You can also provide a custom `View` here to provide presentation samples:
+
+```swift
+struct CustomLayout<Content: View>: View {
+    let content: Content
+    
+    @State var isPresented: Bool = false
+    
+    var body: some View {
+        Button("Open") {
+            isPresented = true
+        }
+        .sheet(isPresented: $isPresented) {
+            content
+        }
+    }
+}
+
+static func exhibitLayout(_ content: Foo) -> some View {
+    CustomLayout(content: content)
+}
+```
 
 # Custom Parameter views
 
@@ -54,38 +93,3 @@ struct DoublingStringParameterView: ParameterView {
 Exhibition()
     .parameterView(DoublingStringParameterView.self)
 ```
-
-# TODO:
-
-- [x] Debug (#1)
-    - [x] Dark mode (#1)
-    - [x] RTL (#11)
-    - [ ] Text sizing
-    - [ ] Investigate other assistive switches
-
-- [x] Search (#2)
-    - [x] Search top level
-    - [ ] Search nested
-
-- [x] Sections (#5)
-    - [x] Collapsing
-    - [ ] Rows
-        - [ ] Icon
-        - [ ] Title
-
-- [x] Exhibit
-    - [x] Push
-    - [ ] Present
-    - [x] Layout rules (#4)
-    - [x] Parameters (#3)
-    
-    - [ ] Code samples (copy-able snippets)
-    - [ ] Code documentation (jazzy / swiftdocc)
-    - [ ] Metadata (JSON output)
-
-- [ ] Layout
-    - [x] iPhone
-    - [x] iPad
-    - [ ] macOS
-    - [ ] watchOS
-    - [ ] tvOS
