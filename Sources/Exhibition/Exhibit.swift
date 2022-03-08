@@ -39,6 +39,7 @@ public struct AnyExhibit {
     let name: String
     let section: String
     let content: (Context) -> AnyView
+    let context = Context()
     
     init<Content: View, Layout: View>(_ exhibit: Exhibit<Content>, layout: @escaping (Content) -> Layout) {
         self.name = exhibit.name
@@ -58,6 +59,11 @@ extension AnyExhibit: Identifiable {
 struct AnyExhibitView: View {
     let exhibit: AnyExhibit
     @ObservedObject var context: Context
+    
+    init(exhibit: AnyExhibit) {
+        self.exhibit = exhibit
+        self.context = exhibit.context
+    }
     
     var body: some View {
         exhibit.content(context)

@@ -79,8 +79,7 @@ public struct ExhibitListView: View {
     }
     
     private func debuggable(_ exhibit: AnyExhibit) -> some View {
-        let context = Context()
-        return AnyExhibitView(exhibit: exhibit, context: context)
+        return AnyExhibitView(exhibit: exhibit)
             .toolbar {
                 ToolbarItem {
                     Button {
@@ -92,7 +91,7 @@ public struct ExhibitListView: View {
             }
             .sheet(isPresented: $exhibitDebugViewPresented) {
                 DebugView(
-                    context: context,
+                    context: exhibit.context,
                     preferredColorScheme: $preferredColorScheme,
                     layoutDirection: $layoutDirection
                 )
