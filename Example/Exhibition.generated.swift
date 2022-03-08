@@ -12,6 +12,7 @@ public struct Exhibition: View {
                 exhibits: [
                     CustomButton_Previews.anyExhibit,
                     CustomDatePicker_Previews.anyExhibit,
+                    CustomSegmentedControl_Previews.anyExhibit,
                     CustomToggle_Previews.anyExhibit,
                 ]
             )
