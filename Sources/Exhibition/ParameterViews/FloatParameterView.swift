@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FloatParameterView: ParameterView {
     let key: String
-    @Binding var value: Float
+    @Binding var value: Float?
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()

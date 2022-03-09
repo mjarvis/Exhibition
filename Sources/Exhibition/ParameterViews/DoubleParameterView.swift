@@ -2,7 +2,7 @@ import SwiftUI
 
 struct DoubleParameterView: ParameterView {
     let key: String
-    @Binding var value: Double
+    @Binding var value: Double?
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()

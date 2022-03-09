@@ -5,8 +5,8 @@ struct CustomTextField: View {
     let doublePlaceholder: String
     let floatPlaceholder: String
     
-    @Binding var doubleValue: Double
-    @Binding var floatValue: Float
+    @Binding var doubleValue: Double?
+    @Binding var floatValue: Float?
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -42,8 +42,8 @@ struct CustomTextField_Previews: ExhibitProvider, PreviewProvider {
         CustomTextField(
             doublePlaceholder: context.parameter(name: "doublePlaceholder", defaultValue: "0.0"),
             floatPlaceholder: context.parameter(name: "floatPlaceholder", defaultValue: "0.0"),
-            doubleValue: context.parameter(name: "doubleValue", defaultValue: 0.0),
-            floatValue: context.parameter(name: "floatValue", defaultValue: 0.0)
+            doubleValue: context.parameter(name: "doubleValue", defaultValue: nil),
+            floatValue: context.parameter(name: "floatValue", defaultValue: nil)
         )
     }
     
