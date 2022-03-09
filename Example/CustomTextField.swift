@@ -2,10 +2,11 @@ import SwiftUI
 import Exhibition
 
 struct CustomTextField: View {
-    let title: String
+    let doublePlaceholder: String
+    let floatPlaceholder: String
     
-    @State var valueFloat: Float = 0.0
-    @State var valueDouble: Double = 0.0
+    @Binding var doubleValue: Double
+    @Binding var floatValue: Float
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -15,8 +16,16 @@ struct CustomTextField: View {
     
     var body: some View {
         VStack {
-            TextField("Input a Float value", value: $valueFloat, formatter: formatter)
-            TextField("Input a Double value", value: $valueDouble, formatter: formatter)
+            HStack {
+                Text("Double: ")
+                TextField(doublePlaceholder, value: $doubleValue, formatter: formatter)
+                    .keyboardType(.decimalPad)
+            }
+            HStack {
+                Text("Float: ")
+                TextField(floatPlaceholder, value: $floatValue, formatter: formatter)
+                    .keyboardType(.decimalPad)
+            }
         }
     }
 }
@@ -24,16 +33,18 @@ struct CustomTextField: View {
 struct CustomTextField_Previews: ExhibitProvider, PreviewProvider {
     static var exhibit = Exhibit(name: "CustomTextField") { context in
         CustomTextField(
-            title: context.parameter(name: "title", defaultValue: "Title"),
-            valueFloat: context.parameter(name: "valueFloat", defaultValue: 0.0),
-            valueDouble: context.parameter(name: "valueDouble", defaultValue: 0.0)
+            doublePlaceholder: context.parameter(name: "doublePlaceholder", defaultValue: "0.0"),
+            floatPlaceholder: context.parameter(name: "floatPlaceholder", defaultValue: "0.0"),
+            doubleValue: context.parameter(name: "doubleValue", defaultValue: 0.0),
+            floatValue: context.parameter(name: "floatValue", defaultValue: 0.0)
         )
     }
     
     static var previews: some View {
         exhibit.preview()
             .previewLayout(.sizeThatFits)
-        exhibit.preview(parameters: ["valueFloat": 1.0])
+        
+        exhibit.preview(parameters: ["floatValue": 1.0])
             .previewLayout(.sizeThatFits)
     }
 }

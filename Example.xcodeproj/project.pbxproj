@@ -90,13 +90,13 @@
 				D4E48B5727C702A800A8D8F0 /* macOS.entitlements */,
 				D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */,
 				D4B3610827B18839001F5E20 /* CustomButton.swift */,
+				B1CCAA6A27D9183800AB9F92 /* CustomTextField.swift */,
 				D4C4975227B451950061244C /* CustomToggle.swift */,
 				D42B337A27BD7E710071C18E /* CustomDatePicker.swift */,
 				D40AF62827D682B7006A5763 /* CustomSegmentedControl.swift */,
 				D4E48B4927C702A600A8D8F0 /* ExampleApp.swift */,
 				D4E48B4A27C702A600A8D8F0 /* ContentView.swift */,
 				D4E48B4B27C702A800A8D8F0 /* Assets.xcassets */,
-				B1CCAA6A27D9183800AB9F92 /* CustomTextField.swift */,
 			);
 			path = Example;
 			sourceTree = "<group>";
