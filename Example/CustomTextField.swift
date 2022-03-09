@@ -15,16 +15,23 @@ struct CustomTextField: View {
     }()
     
     var body: some View {
+        #if os(iOS)
+            contents
+                .keyboardType(.decimalPad)
+        #else
+            contents
+        #endif
+    }
+    
+    @ViewBuilder var contents: some View {
         VStack {
             HStack {
                 Text("Double: ")
                 TextField(doublePlaceholder, value: $doubleValue, formatter: formatter)
-                    .keyboardType(.decimalPad)
             }
             HStack {
                 Text("Float: ")
                 TextField(floatPlaceholder, value: $floatValue, formatter: formatter)
-                    .keyboardType(.decimalPad)
             }
         }
     }
