@@ -15,7 +15,13 @@ struct DoubleParameterView: ParameterView {
             Text(key)
             TextField(key, value: $value, formatter: formatter)
                 .multilineTextAlignment(.trailing)
-                .keyboardType(.decimalPad)
+                .modify {
+                    #if os(iOS)
+                        $0.keyboardType(.decimalPad)
+                    #else
+                        $0
+                    #endif
+                }
         }
     }
 }
