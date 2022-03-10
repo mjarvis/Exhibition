@@ -102,6 +102,8 @@ public struct ExhibitListView: View {
             .parameterView(DateParameterView.self)
             .parameterView(ClosureParameterView.self)
             .parameterView(EnumParameterView.self)
+            .parameterView(DecimalFormattedParameterView<Float>.self)
+            .parameterView(DecimalFormattedParameterView<Double>.self)
     }
     
     private var searchResults: [AnyExhibit] {

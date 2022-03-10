@@ -1,4 +1,4 @@
-// Generated using Sourcery 1.6.1 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 1.7.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 import Exhibition
 import SwiftUI
@@ -13,6 +13,7 @@ public struct Exhibition: View {
                     CustomButton_Previews.anyExhibit,
                     CustomDatePicker_Previews.anyExhibit,
                     CustomSegmentedControl_Previews.anyExhibit,
+                    CustomTextField_Previews.anyExhibit,
                     CustomToggle_Previews.anyExhibit,
                 ]
             )

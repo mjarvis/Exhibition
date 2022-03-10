@@ -14,7 +14,7 @@ public class Context: ObservableObject {
             return defaultValue
         }
         
-        return binding as! T
+        return binding as? T ?? defaultValue
     }
     
     public func parameter<T>(name: String) -> T where T: Defaultable {

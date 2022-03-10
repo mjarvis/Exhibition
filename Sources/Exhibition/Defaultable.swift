@@ -17,7 +17,7 @@ extension Int: Defaultable {
 }
 
 extension Float: Defaultable {
-    public static var defaultValue: Float { 0 }
+    public static var defaultValue: Float { 0.0 }
 }
 
 extension Bool: Defaultable {
