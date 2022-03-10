@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct FloatParameterView: ParameterView {
+struct DecimalFormattedParameterView<T>: ParameterView {
     let key: String
-    @Binding var value: Float?
+    @Binding var value: T?
     
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -25,4 +25,5 @@ struct FloatParameterView: ParameterView {
         }
     }
 }
+
 
