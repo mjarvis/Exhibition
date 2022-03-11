@@ -65,14 +65,23 @@ struct DebugView: View {
         .preferredColorScheme(preferredColorScheme)
     }
     
-    private func parameterView(parameter: (key: String, value: Any)) -> AnyView? {
-        let view = parameterViews
+    @ViewBuilder private func parameterView(parameter: (key: String, value: Any)) -> some View {
+        if let view = possibleParameterView(parameter: parameter) {
+            view
+        } else {
+            UnknownParameterView(
+                key: parameter.key,
+                value: context.parameter(name: parameter.key, defaultValue: parameter.value)
+            )
+        }
+    }
+    
+    private func possibleParameterView(parameter: (key: String, value: Any)) -> AnyView? {
+        parameterViews
             .lazy
             .compactMap { parameterView in
                 parameterView(parameter.key, parameter.value, context)
             }
             .first
-        
-        return view ?? AnyView(Text(parameter.key))
     }
 }
