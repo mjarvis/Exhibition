@@ -1,6 +1,7 @@
 import Exhibition
 import SwiftUI
 
+/// A Custom button style
 struct CustomButton: View {
     let title: String
     let action: (Date) -> Void

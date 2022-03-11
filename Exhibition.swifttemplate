@@ -9,7 +9,7 @@ public struct Exhibition: View {
         NavigationView {
             ExhibitListView(
                 exhibits: [<% for type in types.types where type.inheritedTypes.contains("ExhibitProvider") { %>
-                    <%= type.name %>.anyExhibit,<% } %>
+                    <%= type.name %>.anyExhibit, // <% for variable in type.staticVariables where variable.name == "exhibit" { %> <%= type %><% } %><% } %>
                 ]
             )
         }

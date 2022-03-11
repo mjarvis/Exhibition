@@ -234,7 +234,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"/opt/homebrew/bin:$PATH\"\nsourcery --sources ./Example --templates . --output ./Example\n";
+			shellScript = "export PATH=\"/opt/homebrew/bin:$PATH\"\nsourcery --disableCache --parseDocumentation --sources ./Example --templates . --output ./Example\n";
 		};
 		D4E48B6F27C703D000A8D8F0 /* Exhibition */ = {
 			isa = PBXShellScriptBuildPhase;
