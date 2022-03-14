@@ -7,6 +7,8 @@ struct DebugView: View {
     @Binding var preferredColorScheme: ColorScheme
     @Binding var layoutDirection: LayoutDirection
     
+    let resetAllContexts: () -> Void
+    
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.parameterViews) var parameterViews
     
@@ -23,16 +25,42 @@ struct DebugView: View {
                         Text("Left to Right").tag(LayoutDirection.leftToRight)
                         Text("Right to Left").tag(LayoutDirection.rightToLeft)
                     }
+                    
+                    Button(role: .destructive) {
+                        preferredColorScheme = .light
+                        layoutDirection = .leftToRight
+                    } label: {
+                        Text("Reset")
+                    }
+
                 } header: {
                     Text("Accessibility")
                 }
                 
-                if context.parameters.isEmpty == false {
+                if context.parameters.isEmpty {
+                    Section {
+                        Button(role: .destructive) {
+                            resetAllContexts()
+                        } label: {
+                            Text("Reset all Exhibits")
+                        }
+
+                    }
+                } else {
                     Section {
                         ForEach(
                             context.parameters.sorted(by: keyAscending), id: \.key,
                             content: parameterView
                         )
+                        
+                        Button(role: .destructive) {
+                            DispatchQueue.main.async {
+                                // Without the dispatch, this causes the parameter list to blink
+                                context.resetParameters()
+                            }
+                        } label: {
+                            Text("Reset")
+                        }
                     } header: {
                         Text("Parameters")
                     }
@@ -48,6 +76,12 @@ struct DebugView: View {
                                     $0
                                 #endif
                             }
+                        
+                        Button(role: .destructive) {
+                            context.clearLog()
+                        } label: {
+                            Text("Clear")
+                        }
                     } header: {
                         Text("Log")
                     }

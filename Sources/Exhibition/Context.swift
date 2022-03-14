@@ -8,6 +8,16 @@ public class Context: ObservableObject {
         self.parameters = parameters
     }
     
+    /// Reset parameters to default values
+    public func resetParameters() {
+        parameters.removeAll()
+    }
+    
+    /// Clear the log
+    public func clearLog() {
+        log.removeAll()
+    }
+    
     public func parameter<T>(name: String, defaultValue: T) -> T {
         guard let binding = parameters[name] else {
             parameters[name] = defaultValue
