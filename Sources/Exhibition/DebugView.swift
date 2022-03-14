@@ -26,12 +26,11 @@ struct DebugView: View {
                         Text("Right to Left").tag(LayoutDirection.rightToLeft)
                     }
                     
-                    Button(role: .destructive) {
+                    Button("Reset") {
                         preferredColorScheme = .light
                         layoutDirection = .leftToRight
-                    } label: {
-                        Text("Reset")
                     }
+                    .foregroundColor(.red)
 
                 } header: {
                     Text("Accessibility")
@@ -39,12 +38,10 @@ struct DebugView: View {
                 
                 if context.parameters.isEmpty {
                     Section {
-                        Button(role: .destructive) {
+                        Button("Reset all Exhibits") {
                             resetAllContexts()
-                        } label: {
-                            Text("Reset all Exhibits")
                         }
-
+                        .foregroundColor(.red)
                     }
                 } else {
                     Section {
@@ -53,14 +50,13 @@ struct DebugView: View {
                             content: parameterView
                         )
                         
-                        Button(role: .destructive) {
+                        Button("Reset") {
                             DispatchQueue.main.async {
                                 // Without the dispatch, this causes the parameter list to blink
                                 context.resetParameters()
                             }
-                        } label: {
-                            Text("Reset")
                         }
+                        .foregroundColor(.red)
                     } header: {
                         Text("Parameters")
                     }
@@ -77,11 +73,10 @@ struct DebugView: View {
                                 #endif
                             }
                         
-                        Button(role: .destructive) {
+                        Button("Clear") {
                             context.clearLog()
-                        } label: {
-                            Text("Clear")
                         }
+                        .foregroundColor(.red)
                     } header: {
                         Text("Log")
                     }
