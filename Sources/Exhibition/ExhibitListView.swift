@@ -134,8 +134,8 @@ struct ExhibitListView_Previews: PreviewProvider {
     static var previews: some View {
         ExhibitListView(
             exhibits: [
-                First.anyExhibit,
-                Second.anyExhibit,
+                First.anyExhibit(sample: ""),
+                Second.anyExhibit(sample: ""),
             ]
         )
     }

@@ -41,12 +41,23 @@ public struct AnyExhibit {
     let content: (Context) -> AnyView
     let context = Context()
     
-    init<Content: View, Layout: View>(_ exhibit: Exhibit<Content>, layout: @escaping (Content) -> Layout) {
+    init<Content: View, Layout: View>(
+        _ exhibit: Exhibit<Content>,
+        sample: String,
+        layout: @escaping (Content) -> Layout
+    ) {
         self.name = exhibit.name
         self.section = exhibit.section
         self.content = { context in
             AnyView(layout(exhibit.content(context)))
         }
+        context.sample = sample
+            .split(separator: "\n")
+            .drop { !$0.hasSuffix("in") }
+            .dropFirst()
+            .dropLast()
+            .map { $0.dropFirst(8) } // Naive, assumes indentation 4 spaces, and inset 2 levels.
+            .joined(separator: "\n")
     }
 }
 

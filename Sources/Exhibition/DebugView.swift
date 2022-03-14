@@ -27,6 +27,14 @@ struct DebugView: View {
                     Text("Accessibility")
                 }
                 
+                Section {
+                    Text(context.sample)
+                        .font(.caption)
+                        .fixedSize(horizontal: false, vertical: true)
+                } header: {
+                    Text("Code Sample")
+                }
+                
                 if context.parameters.isEmpty == false {
                     Section {
                         ForEach(

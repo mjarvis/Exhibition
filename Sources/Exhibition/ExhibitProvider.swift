@@ -16,8 +16,8 @@ public extension ExhibitProvider {
             .previewLayout(.sizeThatFits)
     }
     
-    static var anyExhibit: AnyExhibit {
-        AnyExhibit(exhibit, layout: exhibitLayout)
+    static func anyExhibit(sample: String) -> AnyExhibit {
+        AnyExhibit(exhibit, sample: sample, layout: exhibitLayout)
     }
 }
 

@@ -4,6 +4,8 @@ public class Context: ObservableObject {
     @Published var parameters: [String: Any]
     @Published var log: [String] = []
     
+    var sample: String = ""
+    
     init(parameters: [String: Any] = [:]) {
         self.parameters = parameters
     }
