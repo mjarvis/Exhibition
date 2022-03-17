@@ -9,7 +9,7 @@ public protocol ExhibitProvider {
     
     static func exhibitContent(context: Context) -> Content
     
-    static func exhibitLayout(_ content: Content) -> Layout
+    static func exhibitLayout(content: Content) -> Layout
 }
 
 public extension ExhibitProvider {
@@ -34,7 +34,7 @@ public extension ExhibitProvider {
 }
 
 public extension ExhibitProvider where Content == Layout {
-    static func exhibitLayout(_ content: Content) -> Layout {
+    static func exhibitLayout(content: Content) -> Layout {
         content
     }
 }

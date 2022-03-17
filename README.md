@@ -21,10 +21,10 @@ Inspired by [Storybook](https://storybook.js.org/) and [Showkase](https://github
     import Exhibition
     
     struct Foo_Previews: ExhibitProvider, PreviewProvider {
-        static var exhibit = Exhibit(
-            name: "Foo",
-            section: "Bar"
-        ) { context in
+        static var exhibitName: String = "Foo"
+        static var exhibitSection: String = "Bar"
+        
+        static func exhibitContent(context: Context) -> some View {
             Foo(
                 title: context.parameter(name: "title", defaultValue: "Title"),
                 content: context.parameter(name: "content")
@@ -42,7 +42,7 @@ If you would like your exhibit to have some custom layout, there is an optional 
 Here is an example of embeding the exhibit within a `List`:
 
 ```swift
-static func exhibitLayout(_ content: Foo) -> some View {
+static func exhibitLayout(content: Foo) -> some View {
     List {
         content
     }
@@ -67,7 +67,7 @@ struct CustomLayout<Content: View>: View {
     }
 }
 
-static func exhibitLayout(_ content: Foo) -> some View {
+static func exhibitLayout(content: Foo) -> some View {
     CustomLayout(content: content)
 }
 ```

@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// Wrapper for an `ExhibitProvider` erasing the Content and Layout types.
 public struct AnyExhibit {
     let name: String
     let section: String
@@ -10,7 +11,7 @@ public struct AnyExhibit {
         self.name = provider.exhibitName
         self.section = provider.exhibitSection
         self.content = { context in
-            AnyView(provider.exhibitLayout(provider.exhibitContent(context: context)))
+            AnyView(provider.exhibitLayout(content: provider.exhibitContent(context: context)))
         }
     }
 }
