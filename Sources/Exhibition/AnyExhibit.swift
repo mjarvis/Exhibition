@@ -11,7 +11,7 @@ public struct AnyExhibit {
         self.name = provider.exhibitName
         self.section = provider.exhibitSection
         self.content = { context in
-            AnyView(provider.exhibitLayout(content: provider.exhibitContent(context: context)))
+            AnyView(provider.exhibitLayout(content: AnyView(provider.exhibitContent(context: context))))
         }
     }
 }

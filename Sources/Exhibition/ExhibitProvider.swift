@@ -7,14 +7,17 @@ public protocol ExhibitProvider {
     static var exhibitName: String { get }
     static var exhibitSection: String { get }
     
-    static func exhibitContent(context: Context) -> Content
+    @ViewBuilder static func exhibitContent(context: Context) -> Content
     
-    static func exhibitLayout(content: Content) -> Layout
+    @ViewBuilder static func exhibitLayout(content: AnyView) -> Layout
 }
 
 public extension ExhibitProvider {
     static var exhibitSection: String { "" }
     
+    @ViewBuilder static func exhibitLayout(content: AnyView) -> some View {
+        content
+    }
     
     @ViewBuilder static func exhibitPreview(parameters: [String: Any] = [:]) -> some View {
         ExhibitPreview(
@@ -30,12 +33,6 @@ public extension ExhibitProvider {
     
     static var anyExhibit: AnyExhibit {
         AnyExhibit(provider: self)
-    }
-}
-
-public extension ExhibitProvider where Content == Layout {
-    static func exhibitLayout(content: Content) -> Layout {
-        content
     }
 }
 

@@ -20,7 +20,7 @@ struct CustomToggle_Previews: ExhibitProvider, PreviewProvider {
         )
     }
     
-    static func exhibitLayout(content: CustomToggle) -> some View {
+    static func exhibitLayout(content: AnyView) -> some View {
         content.padding()
     }
 }

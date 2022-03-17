@@ -42,7 +42,7 @@ If you would like your exhibit to have some custom layout, there is an optional 
 Here is an example of embeding the exhibit within a `List`:
 
 ```swift
-static func exhibitLayout(content: Foo) -> some View {
+static func exhibitLayout(content: AnyView) -> some View {
     List {
         content
     }
@@ -67,7 +67,7 @@ struct CustomLayout<Content: View>: View {
     }
 }
 
-static func exhibitLayout(content: Foo) -> some View {
+static func exhibitLayout(content: AnyView) -> some View {
     CustomLayout(content: content)
 }
 ```
