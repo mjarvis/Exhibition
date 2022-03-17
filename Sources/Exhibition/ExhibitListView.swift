@@ -12,7 +12,8 @@ public struct ExhibitListView: View {
     // MARK: Accessibility
     @State var preferredColorScheme: ColorScheme = .light
     @State var layoutDirection: LayoutDirection = .leftToRight
-    
+    @State var contentSizeCategory: ContentSizeCategory = .medium
+        
     private var sections: [String: [AnyExhibit]] {
         Dictionary(grouping: searchResults, by: \.section)
     }
@@ -71,15 +72,17 @@ public struct ExhibitListView: View {
             DebugView(
                 context: .init(),
                 preferredColorScheme: $preferredColorScheme,
-                layoutDirection: $layoutDirection
+                layoutDirection: $layoutDirection,
+                contentSizeCategory: $contentSizeCategory
             )
         }
         .preferredColorScheme(preferredColorScheme)
         .environment(\.layoutDirection, layoutDirection)
     }
     
-    private func debuggable(_ exhibit: AnyExhibit) -> some View {
-        return AnyExhibitView(exhibit: exhibit)
+    @ViewBuilder private func debuggable(_ exhibit: AnyExhibit) -> some View {
+        AnyExhibitView(exhibit: exhibit)
+            .environment(\.sizeCategory, contentSizeCategory)
             .toolbar {
                 ToolbarItem {
                     Button {
@@ -93,7 +96,8 @@ public struct ExhibitListView: View {
                 DebugView(
                     context: exhibit.context,
                     preferredColorScheme: $preferredColorScheme,
-                    layoutDirection: $layoutDirection
+                    layoutDirection: $layoutDirection,
+                    contentSizeCategory: $contentSizeCategory
                 )
             }
             .parameterView(StringParameterView.self)

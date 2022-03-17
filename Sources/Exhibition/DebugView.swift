@@ -6,6 +6,7 @@ struct DebugView: View {
     
     @Binding var preferredColorScheme: ColorScheme
     @Binding var layoutDirection: LayoutDirection
+    @Binding var contentSizeCategory: ContentSizeCategory
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.parameterViews) var parameterViews
@@ -22,6 +23,12 @@ struct DebugView: View {
                     Picker("Layout Direction", selection: $layoutDirection) {
                         Text("Left to Right").tag(LayoutDirection.leftToRight)
                         Text("Right to Left").tag(LayoutDirection.rightToLeft)
+                    }
+                    
+                    Picker("Content Size Category", selection: $contentSizeCategory) {
+                        ForEach(ContentSizeCategory.allCases, id: \.self) { size in
+                            Text(String(describing: size)).tag(size)
+                        }
                     }
                 } header: {
                     Text("Accessibility")
