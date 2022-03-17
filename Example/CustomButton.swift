@@ -23,10 +23,10 @@ struct CustomButton_Previews: ExhibitProvider, PreviewProvider {
     }
     
     static var previews: some View {
-        exhibit.preview()
+        exhibitPreview()
             .previewLayout(.sizeThatFits)
         
-        exhibit.preview(parameters: ["title": "Other"])
+        exhibitPreview(parameters: ["title": "Other"])
             .previewLayout(.sizeThatFits)
     }
 }

@@ -15,23 +15,35 @@ public protocol ExhibitProvider {
 public extension ExhibitProvider {
     static var exhibitSection: String { "" }
     
-    static var exhibit: Exhibit<Content> {
-        Exhibit(name: exhibitName, section: exhibitSection, builder: exhibitContent)
+    
+    @ViewBuilder static func exhibitPreview(parameters: [String: Any] = [:]) -> some View {
+        ExhibitPreview(
+            builder: exhibitContent,
+            context: Context(parameters: parameters)
+        )
     }
     
     static var previews: some View {
-        Exhibit(name: exhibitName, section: exhibitSection, builder: exhibitContent)
-            .preview()
+        exhibitPreview()
             .previewLayout(.sizeThatFits)
     }
     
     static var anyExhibit: AnyExhibit {
-        AnyExhibit(exhibit, layout: exhibitLayout)
+        AnyExhibit(provider: self)
     }
 }
 
 public extension ExhibitProvider where Content == Layout {
     static func exhibitLayout(_ content: Content) -> Layout {
         content
+    }
+}
+
+struct ExhibitPreview<Content: View>: View {
+    let builder: (Context) -> Content
+    @ObservedObject var context: Context
+    
+    var body: some View {
+        builder(context)
     }
 }

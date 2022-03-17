@@ -50,10 +50,10 @@ struct CustomTextField_Previews: ExhibitProvider, PreviewProvider {
     }
     
     static var previews: some View {
-        exhibit.preview()
+        exhibitPreview()
             .previewLayout(.sizeThatFits)
         
-        exhibit.preview(parameters: ["floatValue": 1.0])
+        exhibitPreview(parameters: ["floatValue": 1.0])
             .previewLayout(.sizeThatFits)
     }
 }
