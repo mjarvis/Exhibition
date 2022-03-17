@@ -38,7 +38,9 @@ struct CustomTextField: View {
 }
 
 struct CustomTextField_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibit = Exhibit(name: "CustomTextField") { context in
+    static var exhibitName: String = "CustomTextField"
+    
+    static func exhibitContent(context: Context) -> some View {
         CustomTextField(
             doublePlaceholder: context.parameter(name: "doublePlaceholder", defaultValue: "0.0"),
             floatPlaceholder: context.parameter(name: "floatPlaceholder", defaultValue: "0.0"),

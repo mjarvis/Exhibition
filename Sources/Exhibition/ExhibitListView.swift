@@ -120,14 +120,20 @@ public struct ExhibitListView: View {
 
 struct ExhibitListView_Previews: PreviewProvider {
     struct First: ExhibitProvider {
-        static let exhibit = Exhibit(name: "Text", section: "Section 1") { context in
-            Text(context.parameter(name: "Content", defaultValue: "Text"))
+        static var exhibitName: String = "Text"
+        static var exhibitSection: String = "Section 1"
+        
+        static func exhibitContent(context: Context) -> some View {
+            Text(context.parameter(name: "Content", defaultValue: "text"))
         }
     }
     
     struct Second: ExhibitProvider {
-        static let exhibit = Exhibit(name: "Text", section: "Section 1") { context in
-            Text(context.parameter(name: "Content", defaultValue: "Text"))
+        static var exhibitName: String = "Text"
+        static var exhibitSection: String = "Section 1"
+        
+        static func exhibitContent(context: Context) -> some View {
+            Text(context.parameter(name: "Content", defaultValue: "text"))
         }
     }
     

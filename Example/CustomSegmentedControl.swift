@@ -26,10 +26,10 @@ struct CustomSegmentedControl: View {
 }
 
 struct CustomSegmentedControl_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibit: Exhibit = Exhibit(
-        name: "CustomSegmentedControl",
-        section: "Pickers"
-    ) { context in
+    static var exhibitName: String = "CustomSegmentedControl"
+    static var exhibitSection: String = "Pickers"
+    
+    static func exhibitContent(context: Context) -> some View {
         CustomSegmentedControl(
             title: context.parameter(name: "title", defaultValue: "Title"),
             selection: context.parameter(name: "selection", defaultValue: .first)
