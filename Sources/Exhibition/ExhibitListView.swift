@@ -72,14 +72,19 @@ public struct ExhibitListView: View {
                 context: .init(),
                 preferredColorScheme: $preferredColorScheme,
                 layoutDirection: $layoutDirection
-            )
+            ) {
+                exhibits.forEach {
+                    $0.context.resetParameters()
+                    $0.context.clearLog()
+                }
+            }
         }
         .preferredColorScheme(preferredColorScheme)
-        .environment(\.layoutDirection, layoutDirection)
     }
     
     private func debuggable(_ exhibit: AnyExhibit) -> some View {
         return AnyExhibitView(exhibit: exhibit)
+            .environment(\.layoutDirection, layoutDirection)
             .toolbar {
                 ToolbarItem {
                     Button {
@@ -93,7 +98,8 @@ public struct ExhibitListView: View {
                 DebugView(
                     context: exhibit.context,
                     preferredColorScheme: $preferredColorScheme,
-                    layoutDirection: $layoutDirection
+                    layoutDirection: $layoutDirection,
+                    resetAllContexts: {} // This doesn't show in individual exhibit
                 )
             }
             .parameterView(StringParameterView.self)
