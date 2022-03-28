@@ -13,7 +13,9 @@ struct CustomButton: View {
 }
 
 struct CustomButton_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibit = Exhibit(name: "CustomButton") { context in
+    static var exhibitName: String = "CustomButton"
+    
+    static func exhibitContent(context: Context) -> some View {
         CustomButton(
             title: context.parameter(name: "title", defaultValue: "Title"),
             action: context.parameter(name: "action")
@@ -21,10 +23,10 @@ struct CustomButton_Previews: ExhibitProvider, PreviewProvider {
     }
     
     static var previews: some View {
-        exhibit.preview()
+        exhibitPreview()
             .previewLayout(.sizeThatFits)
         
-        exhibit.preview(parameters: ["title": "Other"])
+        exhibitPreview(parameters: ["title": "Other"])
             .previewLayout(.sizeThatFits)
     }
 }

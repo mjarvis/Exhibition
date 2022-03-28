@@ -11,14 +11,16 @@ struct CustomToggle: View {
 }
 
 struct CustomToggle_Previews: ExhibitProvider, PreviewProvider {
-    static var exhibit = Exhibit(name: "CustomToggle") { context in
+    static var exhibitName: String = "CustomToggle"
+    
+    static func exhibitContent(context: Context) -> some View {
         CustomToggle(
             title: context.parameter(name: "title", defaultValue: "Title"),
             isOn: context.parameter(name: "isOn")
         )
     }
     
-    static func exhibitLayout(_ content: CustomToggle) -> some View {
+    static func exhibitLayout(content: AnyView) -> some View {
         content.padding()
     }
 }
