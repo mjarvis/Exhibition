@@ -8,6 +8,8 @@ struct DebugView: View {
     @Binding var layoutDirection: LayoutDirection
     @Binding var contentSizeCategory: ContentSizeCategory
     
+    let resetAllContexts: () -> Void
+    
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.parameterViews) var parameterViews
     
@@ -30,16 +32,37 @@ struct DebugView: View {
                             Text(String(describing: size)).tag(size)
                         }
                     }
+                    
+                    Button("Reset") {
+                        preferredColorScheme = .light
+                        layoutDirection = .leftToRight
+                    }
+                    .foregroundColor(.red)
                 } header: {
                     Text("Accessibility")
                 }
                 
-                if context.parameters.isEmpty == false {
+                if context.parameters.isEmpty {
+                    Section {
+                        Button("Reset all Exhibits") {
+                            resetAllContexts()
+                        }
+                        .foregroundColor(.red)
+                    }
+                } else {
                     Section {
                         ForEach(
                             context.parameters.sorted(by: keyAscending), id: \.key,
                             content: parameterView
                         )
+                        
+                        Button("Reset") {
+                            DispatchQueue.main.async {
+                                // Without the dispatch, this causes the parameter list to blink
+                                context.resetParameters()
+                            }
+                        }
+                        .foregroundColor(.red)
                     } header: {
                         Text("Parameters")
                     }
@@ -55,6 +78,11 @@ struct DebugView: View {
                                     $0
                                 #endif
                             }
+                        
+                        Button("Clear") {
+                            context.clearLog()
+                        }
+                        .foregroundColor(.red)
                     } header: {
                         Text("Log")
                     }
