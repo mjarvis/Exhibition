@@ -80,11 +80,11 @@ public struct ExhibitListView: View {
             }
         }
         .preferredColorScheme(preferredColorScheme)
-        .environment(\.layoutDirection, layoutDirection)
     }
     
     private func debuggable(_ exhibit: AnyExhibit) -> some View {
         return AnyExhibitView(exhibit: exhibit)
+            .environment(\.layoutDirection, layoutDirection)
             .toolbar {
                 ToolbarItem {
                     Button {
