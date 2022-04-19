@@ -12,7 +12,8 @@ public struct ExhibitListView: View {
     // MARK: Accessibility
     @State var preferredColorScheme: ColorScheme = .light
     @State var layoutDirection: LayoutDirection = .leftToRight
-    
+    @State var contentSizeCategory: ContentSizeCategory = .medium
+        
     private var sections: [String: [AnyExhibit]] {
         Dictionary(grouping: searchResults, by: \.section)
     }
@@ -71,7 +72,8 @@ public struct ExhibitListView: View {
             DebugView(
                 context: .init(),
                 preferredColorScheme: $preferredColorScheme,
-                layoutDirection: $layoutDirection
+                layoutDirection: $layoutDirection,
+                contentSizeCategory: $contentSizeCategory
             ) {
                 exhibits.forEach {
                     $0.context.resetParameters()
@@ -82,8 +84,9 @@ public struct ExhibitListView: View {
         .preferredColorScheme(preferredColorScheme)
     }
     
-    private func debuggable(_ exhibit: AnyExhibit) -> some View {
-        return AnyExhibitView(exhibit: exhibit)
+    @ViewBuilder private func debuggable(_ exhibit: AnyExhibit) -> some View {
+        AnyExhibitView(exhibit: exhibit)
+            .environment(\.sizeCategory, contentSizeCategory)
             .environment(\.layoutDirection, layoutDirection)
             .toolbar {
                 ToolbarItem {
@@ -99,6 +102,7 @@ public struct ExhibitListView: View {
                     context: exhibit.context,
                     preferredColorScheme: $preferredColorScheme,
                     layoutDirection: $layoutDirection,
+                    contentSizeCategory: $contentSizeCategory,
                     resetAllContexts: {} // This doesn't show in individual exhibit
                 )
             }
