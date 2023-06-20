@@ -13,7 +13,7 @@ jobs:
   # Run Exhibition tests via xcodeproj
   test:
   
-    runs-on: macos-11
+    runs-on: macos-13
     
     strategy:
       matrix:
@@ -21,14 +21,14 @@ jobs:
         
         # Latest iOS
         - sdk: "iphonesimulator"
-          destination: "platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro Max"
+          destination: "platform=iOS Simulator,OS=16.4,name=iPhone 14 Pro Max"
           
         # Latest watchOS
         - sdk: "watchsimulator"
-          destination: "OS=8.3,name=Apple Watch Series 7 - 45mm"
+          destination: "OS=9.4,name=Apple Watch Series 8 - 45mm"
         
         # Latest macOS
-        - sdk: "macosx12.1"
+        - sdk: "macosx13.3"
           destination: "platform=macOS"
     
     steps:
@@ -38,7 +38,7 @@ jobs:
       - name: Select Xcode
         uses: devbotsxyz/xcode-select@v1.1.0
         with:
-          version: "13.2.1"
+          version: "14.2"
     
       - name: Build and Test
         run: |
@@ -51,7 +51,7 @@ jobs:
   # Build Example app to test sourcery generation & validate Package.swift
   example:
     
-    runs-on: macos-11
+    runs-on: macos-13
     
     strategy:
       matrix:
@@ -60,10 +60,10 @@ jobs:
         # Latest iOS Build
         - sdk: "iphonesimulator"
           scheme: "Example (iOS)"
-          destination: "platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro Max"
+          destination: "platform=iOS Simulator,OS=16.4,name=iPhone 14 Pro Max"
         
         # Latest macOS
-        - sdk: "macosx12.1"
+        - sdk: "macosx13.3"
           scheme: "Example (macOS)"
           destination: "platform=macOS"
     
@@ -74,7 +74,7 @@ jobs:
       - name: Select Xcode
         uses: devbotsxyz/xcode-select@v1.1.0
         with:
-          version: "13.2.1"
+          version: "14.2"
       
       - name: Install sourcery
         run: brew install sourcery
