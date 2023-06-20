@@ -1,7 +1,7 @@
 import SwiftUI
 
 public class Context: ObservableObject {
-    @Published var parameters: [String: Any]
+    var parameters: [String: Any]
     @Published var log: [String] = []
     
     init(parameters: [String: Any] = [:]) {
@@ -10,6 +10,7 @@ public class Context: ObservableObject {
     
     /// Reset parameters to default values
     public func resetParameters() {
+        objectWillChange.send()
         parameters.removeAll()
     }
     
@@ -37,6 +38,7 @@ public class Context: ObservableObject {
                 self.parameter(name: name, defaultValue: defaultValue)
             },
             set: { [unowned self] newValue in
+                objectWillChange.send()
                 parameters[name] = newValue
             }
         )
