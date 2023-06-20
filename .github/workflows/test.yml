@@ -21,11 +21,11 @@ jobs:
         
         # Latest iOS
         - sdk: "iphonesimulator"
-          destination: "platform=iOS Simulator,OS=16.4,name=iPhone 14 Pro Max"
+          destination: "platform=iOS Simulator,OS=16.2,name=iPhone 14 Pro Max"
           
         # Latest watchOS
         - sdk: "watchsimulator"
-          destination: "OS=9.4,name=Apple Watch Series 8 - 45mm"
+          destination: "OS=9.1,name=Apple Watch Series 8 - 45mm"
         
         # Latest macOS
         - sdk: "macosx13.1"
@@ -60,7 +60,7 @@ jobs:
         # Latest iOS Build
         - sdk: "iphonesimulator"
           scheme: "Example (iOS)"
-          destination: "platform=iOS Simulator,OS=16.4,name=iPhone 14 Pro Max"
+          destination: "platform=iOS Simulator,OS=16.2,name=iPhone 14 Pro Max"
         
         # Latest macOS
         - sdk: "macosx13.1"
