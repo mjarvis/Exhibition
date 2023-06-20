@@ -28,7 +28,7 @@ jobs:
           destination: "OS=9.4,name=Apple Watch Series 8 - 45mm"
         
         # Latest macOS
-        - sdk: "macosx13.3"
+        - sdk: "macosx13.1"
           destination: "platform=macOS"
     
     steps:
@@ -63,7 +63,7 @@ jobs:
           destination: "platform=iOS Simulator,OS=16.4,name=iPhone 14 Pro Max"
         
         # Latest macOS
-        - sdk: "macosx13.3"
+        - sdk: "macosx13.1"
           scheme: "Example (macOS)"
           destination: "platform=macOS"
     
