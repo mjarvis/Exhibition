@@ -25,7 +25,7 @@ jobs:
           
         # Latest watchOS
         - sdk: "watchsimulator"
-          destination: "OS=9.1,name=Apple Watch Series 8 - 45mm"
+          destination: "platform=watchOS Simulator,OS=9.1,name=Apple Watch Series 8 - 45mm"
         
         # Latest macOS
         - sdk: "macosx13.1"
