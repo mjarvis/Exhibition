@@ -41,7 +41,6 @@
 		D4E48B4B27C702A800A8D8F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4E48B5027C702A800A8D8F0 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E48B5527C702A800A8D8F0 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4E48B5727C702A800A8D8F0 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exhibition.generated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +86,6 @@
 		D4B360F727B187EC001F5E20 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				D4E48B5727C702A800A8D8F0 /* macOS.entitlements */,
 				D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */,
 				D4B3610827B18839001F5E20 /* CustomButton.swift */,
 				B1CCAA6A27D9183800AB9F92 /* CustomTextField.swift */,
@@ -470,7 +468,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -496,7 +493,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
