@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B1CCAA6B27D9183800AB9F92 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCAA6A27D9183800AB9F92 /* CustomTextField.swift */; };
-		B1CCAA6C27D9183800AB9F92 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CCAA6A27D9183800AB9F92 /* CustomTextField.swift */; };
-		D40AF62927D682B7006A5763 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40AF62827D682B7006A5763 /* CustomSegmentedControl.swift */; };
-		D40AF62A27D682B7006A5763 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40AF62827D682B7006A5763 /* CustomSegmentedControl.swift */; };
 		D4E48B5827C702A800A8D8F0 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E48B4927C702A600A8D8F0 /* ExampleApp.swift */; };
 		D4E48B5927C702A800A8D8F0 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E48B4927C702A600A8D8F0 /* ExampleApp.swift */; };
 		D4E48B5A27C702A800A8D8F0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E48B4A27C702A600A8D8F0 /* ContentView.swift */; };
@@ -21,21 +17,13 @@
 		D4E48B6727C7038D00A8D8F0 /* Exhibition.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */; };
 		D4E48B6827C7038E00A8D8F0 /* Exhibition.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */; };
 		D4E48B6927C7039400A8D8F0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B3610827B18839001F5E20 /* CustomButton.swift */; };
-		D4E48B6A27C7039400A8D8F0 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4975227B451950061244C /* CustomToggle.swift */; };
-		D4E48B6B27C7039400A8D8F0 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B337A27BD7E710071C18E /* CustomDatePicker.swift */; };
 		D4E48B6C27C7039400A8D8F0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B3610827B18839001F5E20 /* CustomButton.swift */; };
-		D4E48B6D27C7039400A8D8F0 /* CustomToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C4975227B451950061244C /* CustomToggle.swift */; };
-		D4E48B6E27C7039400A8D8F0 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B337A27BD7E710071C18E /* CustomDatePicker.swift */; };
 		D4E48B7127C703DF00A8D8F0 /* Exhibition in Frameworks */ = {isa = PBXBuildFile; productRef = D4E48B7027C703DF00A8D8F0 /* Exhibition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B1CCAA6A27D9183800AB9F92 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		D40AF62827D682B7006A5763 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
-		D42B337A27BD7E710071C18E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		D45C4ED327B1CE5000BA8515 /*  */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ""; sourceTree = "<group>"; };
 		D4B3610827B18839001F5E20 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		D4C4975227B451950061244C /* CustomToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggle.swift; sourceTree = "<group>"; };
 		D4E48B4927C702A600A8D8F0 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		D4E48B4A27C702A600A8D8F0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D4E48B4B27C702A800A8D8F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,10 +76,6 @@
 			children = (
 				D4E576A227B5988A00A97BB7 /* Exhibition.generated.swift */,
 				D4B3610827B18839001F5E20 /* CustomButton.swift */,
-				B1CCAA6A27D9183800AB9F92 /* CustomTextField.swift */,
-				D4C4975227B451950061244C /* CustomToggle.swift */,
-				D42B337A27BD7E710071C18E /* CustomDatePicker.swift */,
-				D40AF62827D682B7006A5763 /* CustomSegmentedControl.swift */,
 				D4E48B4927C702A600A8D8F0 /* ExampleApp.swift */,
 				D4E48B4A27C702A600A8D8F0 /* ContentView.swift */,
 				D4E48B4B27C702A800A8D8F0 /* Assets.xcassets */,
@@ -259,12 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40AF62927D682B7006A5763 /* CustomSegmentedControl.swift in Sources */,
 				D4E48B6927C7039400A8D8F0 /* CustomButton.swift in Sources */,
 				D4E48B5A27C702A800A8D8F0 /* ContentView.swift in Sources */,
-				D4E48B6B27C7039400A8D8F0 /* CustomDatePicker.swift in Sources */,
-				B1CCAA6B27D9183800AB9F92 /* CustomTextField.swift in Sources */,
-				D4E48B6A27C7039400A8D8F0 /* CustomToggle.swift in Sources */,
 				D4E48B6727C7038D00A8D8F0 /* Exhibition.generated.swift in Sources */,
 				D4E48B5827C702A800A8D8F0 /* ExampleApp.swift in Sources */,
 			);
@@ -274,12 +254,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D40AF62A27D682B7006A5763 /* CustomSegmentedControl.swift in Sources */,
 				D4E48B6C27C7039400A8D8F0 /* CustomButton.swift in Sources */,
 				D4E48B5B27C702A800A8D8F0 /* ContentView.swift in Sources */,
-				D4E48B6E27C7039400A8D8F0 /* CustomDatePicker.swift in Sources */,
-				B1CCAA6C27D9183800AB9F92 /* CustomTextField.swift in Sources */,
-				D4E48B6D27C7039400A8D8F0 /* CustomToggle.swift in Sources */,
 				D4E48B6827C7038E00A8D8F0 /* Exhibition.generated.swift in Sources */,
 				D4E48B5927C702A800A8D8F0 /* ExampleApp.swift in Sources */,
 			);

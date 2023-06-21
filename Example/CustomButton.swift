@@ -18,7 +18,7 @@ struct CustomButton_Previews: ExhibitProvider, PreviewProvider {
     static func exhibitContent(context: Context) -> some View {
         CustomButton(
             title: context.parameter(name: "title", defaultValue: "Title"),
-            action: context.parameter(name: "action")
+            action: { _ in }
         )
     }
     

@@ -11,7 +11,7 @@ struct DebugView: View {
     let resetAllContexts: () -> Void
     
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.parameterViews) var parameterViews
+//    @Environment(\.parameterViews) var parameterViews
     
     var body: some View {
         NavigationView {
@@ -52,9 +52,9 @@ struct DebugView: View {
                 } else {
                     Section {
                         ForEach(
-                            context.parameters.sorted(by: keyAscending), id: \.key,
-                            content: parameterView
-                        )
+                            context.parameters.sorted(by: keyAscending), id: \.key) { (key: String, value: AnyParameter) in
+                                
+                            }
                         
                         Button("Reset") {
                             DispatchQueue.main.async {
@@ -100,23 +100,23 @@ struct DebugView: View {
         .preferredColorScheme(preferredColorScheme)
     }
     
-    @ViewBuilder private func parameterView(parameter: (key: String, value: Any)) -> some View {
-        if let view = possibleParameterView(parameter: parameter) {
-            view
-        } else {
-            UnknownParameterView(
-                key: parameter.key,
-                value: context.parameter(name: parameter.key, defaultValue: parameter.value)
-            )
-        }
-    }
-    
-    private func possibleParameterView(parameter: (key: String, value: Any)) -> AnyView? {
-        parameterViews
-            .lazy
-            .compactMap { parameterView in
-                parameterView(parameter.key, parameter.value, context)
-            }
-            .first
-    }
+//    @ViewBuilder private func parameterView(parameter: (key: String, value: Any)) -> some View {
+//        if let view = possibleParameterView(parameter: parameter) {
+//            view
+//        } else {
+//            UnknownParameterView(
+//                key: parameter.key,
+//                value: context.parameter(name: parameter.key, defaultValue: parameter.value)
+//            )
+//        }
+//    }
+//
+//    private func possibleParameterView(parameter: (key: String, value: Any)) -> AnyView? {
+//        parameterViews
+//            .lazy
+//            .compactMap { parameterView in
+//                parameterView(parameter.key, parameter.value, context)
+//            }
+//            .first
+//    }
 }

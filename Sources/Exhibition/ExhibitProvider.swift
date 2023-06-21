@@ -19,7 +19,7 @@ public extension ExhibitProvider {
         content
     }
     
-    @ViewBuilder static func exhibitPreview(parameters: [String: Any] = [:]) -> some View {
+    @ViewBuilder static func exhibitPreview(parameters: [String: AnyParameter] = [:]) -> some View {
         ExhibitPreview(
             builder: exhibitContent,
             context: Context(parameters: parameters)

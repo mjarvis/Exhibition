@@ -1,10 +1,21 @@
 import SwiftUI
 
+public protocol AnyParameter {}
+
+struct Parameter<T, V: View>: AnyParameter {
+    let value: T
+    let view: (String, Binding<T>) -> V
+}
+
+//protocol ParameterView: View {
+//    var value
+//}
+
 public class Context: ObservableObject {
-    var parameters: [String: Any]
+    var parameters: [String: AnyParameter]
     @Published var log: [String] = []
     
-    init(parameters: [String: Any] = [:]) {
+    init(parameters: [String: AnyParameter] = [:]) {
         self.parameters = parameters
     }
     
@@ -19,141 +30,36 @@ public class Context: ObservableObject {
         log.removeAll()
     }
     
-    public func parameter<T>(name: String, defaultValue: T) -> T {
-        guard let binding = parameters[name] else {
-            parameters[name] = defaultValue
+    public func parameter<T, V: View>(name: String, defaultValue: T, view: @escaping (String, Binding<T>) -> V) -> T {
+        guard let parameter = parameters[name] as? Parameter<T, V> else {
+            parameters[name] = Parameter(value: defaultValue, view: view)
             return defaultValue
         }
         
-        return binding as? T ?? defaultValue
+        return parameter.value
     }
     
-    public func parameter<T>(name: String) -> T where T: Defaultable {
-        parameter(name: name, defaultValue: T.defaultValue)
+    public func parameter<T, V: View>(name: String, view: @escaping (String, Binding<T>) -> V) -> T where T: Defaultable {
+        parameter(name: name, defaultValue: T.defaultValue, view: view)
     }
     
-    public func parameter<T>(name: String, defaultValue: T) -> Binding<T> {
+    public func parameter<T, V: View>(name: String, defaultValue: T, view: @escaping (String, Binding<T>) -> V) -> Binding<T> {
         return Binding(
             get: { [unowned self] in
-                self.parameter(name: name, defaultValue: defaultValue)
+                self.parameter(name: name, defaultValue: defaultValue, view: view)
             },
             set: { [unowned self] newValue in
                 objectWillChange.send()
-                parameters[name] = newValue
+                parameters[name] = Parameter(value: newValue, view: view)
             }
         )
     }
     
-    public func parameter<T>(name: String) -> Binding<T> where T: Defaultable {
-        parameter(name: name, defaultValue: T.defaultValue)
+    public func parameter<T, V: View>(name: String, view: @escaping (String, Binding<T>) -> V) -> Binding<T> where T: Defaultable {
+        parameter(name: name, defaultValue: T.defaultValue, view: view)
     }
     
     public func log(_ text: String) {
         log.append(text)
-    }
-}
-
-// MARK: - Closure Parameters
-
-extension Context {
-    /// A closure parameter with no arguments
-    ///
-    /// EG: `action: () -> Void`
-    ///
-    /// - Parameter name: The name of the parameter
-    /// - Returns: A closure to be executed by the view.
-    public func parameter(name: String) -> () -> Void {
-        let parameter = closureParameter(
-            name: name,
-            signature: "() -> Void"
-        )
-
-        return { [unowned self] in
-            parameter.wrappedValue.callCount += 1
-            self.log("\(name): ())")
-        }
-    }
-    
-    /// A closure parameter with a single argument
-    ///
-    /// EG: `action: (String) -> Void`
-    ///
-    /// - Parameter name: The name of the parameter
-    /// - Returns: A closure to be executed by the view
-    public func parameter<A>(name: String) -> (A) -> Void {
-        let parameter = closureParameter(
-            name: name,
-            signature: "(\(A.self)) -> Void"
-        )
-        
-        return { [unowned self] a in
-            parameter.wrappedValue.callCount += 1
-            self.log("\(name): (\(a))")
-        }
-    }
-    
-    /// A closure parameter with two arguments
-    ///
-    /// EG: `action: (String, Int) -> Void`
-    ///
-    /// - Parameter name: The name of the parameter
-    /// - Returns: A closure to be executed by the view
-    public func parameter<A, B>(name: String) -> (A, B) -> Void {
-        let parameter = closureParameter(
-            name: name,
-            signature: "(\(A.self), \(B.self)) -> Void"
-        )
-        
-        return { [unowned self] a, b in
-            parameter.wrappedValue.callCount += 1
-            self.log("\(name): (\(a), \(b))")
-        }
-    }
-    
-    /// A closure parameter with three arguments
-    ///
-    /// EG: `action: (String, Int, Bool) -> Void`
-    ///
-    /// - Parameter name: The name of the parameter
-    /// - Returns: A closure to be executed by the view
-    public func parameter<A, B, C>(name: String) -> (A, B, C) -> Void {
-        let parameter = closureParameter(
-            name: name,
-            signature: "(\(A.self), \(B.self), \(C.self)) -> Void"
-        )
-        
-        return { [unowned self] a, b, c in
-            parameter.wrappedValue.callCount += 1
-            self.log("\(name): (\(a), \(b), \(c))")
-        }
-    }
-    
-    /// A closure parameter with four arguments
-    ///
-    /// EG: `action: (String, Int, Bool, String) -> Void`
-    ///
-    /// - Parameter name: The name of the parameter
-    /// - Returns: A closure to be executed by the view
-    public func parameter<A, B, C, D>(name: String) -> (A, B, C, D) -> Void {
-        let parameter = closureParameter(
-            name: name,
-            signature: "(\(A.self), \(B.self), \(C.self), \(D.self)) -> Void"
-        )
-        
-        return { [unowned self] a, b, c, d in
-            parameter.wrappedValue.callCount += 1
-            self.log("\(name): (\(a), \(b), \(c), \(d))")
-        }
-    }
-    
-    /// Helper for creating a `ClosureParameter` binding without specifying types.
-    private func closureParameter(
-        name: String,
-        signature: String
-    ) -> Binding<ClosureParameter> {
-        parameter(
-            name: name,
-            defaultValue: .init(signature: signature)
-        )
     }
 }
